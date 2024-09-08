@@ -2610,6 +2610,7 @@ __metadata:
 "pc_market_front@workspace:.":
   version: 0.0.0-use.local
   resolution: "pc_market_front@workspace:."
+
   dependencies:
     "@eslint/compat": "npm:^1.1.1"
     "@eslint/eslintrc": "npm:^3.1.0"
