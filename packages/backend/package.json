@@ -1,0 +1,88 @@
+{
+  "name": "ts_backend_template",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "----BUILD": "",
+    "build:routes": "tsoa spec-and-routes",
+    "build:app": "tsc && tsc-alias",
+    "build:full": "yarn run build:routes && yarn run build:app",
+    "build:run": "node --no-warnings=ExperimentalWarning ./build/src/app.js",
+    "build:start": "yarn run build:full && yarn run build:run",
+    "----RUN": "",
+    "start": "yarn run build:start",
+    "dev": "nodemon .",
+    "----CHECK": "",
+    "types": "tsc --noEmit",
+    "lint": "eslint --fix .",
+    "lint:check": "eslint .",
+    "prettier": "prettier --write .",
+    "prettier:check": "prettier --check .",
+    "check": "yarn run types && yarn run lint && yarn run prettier",
+    "----DATABASE": "",
+    "typeorm": "typeorm-ts-node-esm -d ./src/database/data-source",
+    "db:create": "npx vite-node src/database/actions/dbCreate.ts",
+    "db:drop": "npx vite-node src/database/actions/dbDrop.ts",
+    "db:fresh": "yarn run db:drop && yarn run db:create",
+    "seed:run": "npx vite-node src/database/actions/runSeeder.ts",
+    "seed:fresh": "yarn run db:fresh && yarn run seed:run",
+    "----MIGRATIONS": "",
+    "migration:generate": "typeorm migration:generate -d ./build/src/database/data-source.js",
+    "migration:create": "typeorm migration:create",
+    "migration:run": "typeorm migration:run -d ./build/src/database/data-source.js",
+    "migration:revert": "typeorm migration:revert -d ./build/src/database/data-source.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "pg": "^8.12.0",
+    "reflect-metadata": "^0.2.2",
+    "swagger-ui-express": "^5.0.1",
+    "tsoa": "^6.4.0",
+    "typeorm": "^0.3.20"
+  },
+  "devDependencies": {
+    "@eslint/js": "^8.0.0",
+    "@faker-js/faker": "^8.4.1",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/cors": "^2",
+    "@types/express": "^4",
+    "@types/node": "^20.12.7",
+    "@types/swagger-ui-express": "^4.1.6",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.5",
+    "eslint": "^8.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "nodemon": "^3.1.0",
+    "prettier": "^3.2.5",
+    "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.8",
+    "typeorm-extension": "^3.5.1",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.6.0",
+    "vite": "^5.2.8",
+    "vite-node": "^1.5.0",
+    "vitest": "^1.5.0"
+  },
+  "engines": {
+    "node": "^18.0.0 || >=20.0.0"
+  },
+  "packageManager": "yarn@4.4.1",
+  "nodemonConfig": {
+    "ignore": [
+      ".git",
+      "node_modules",
+      "dist",
+      "build",
+      "./src/routes.ts"
+    ],
+    "watch": [
+      "./src"
+    ],
+    "exec": "yarn run start",
+    "ext": "ts"
+  }
+}
