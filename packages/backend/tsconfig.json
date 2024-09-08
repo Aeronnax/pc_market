@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "rootDir": ".",
+    "target": "ESNext",
+    "module": "ESNext",
+    "outDir": "./build",
+    "types": ["node", "vite/client"],
+    "lib": ["ES6", "ES2022", "DOM"],
+    "sourceMap": true,
+
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+
+    "moduleResolution": "Node",
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "src/*": ["./src/*"]
+    },
+
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+
+    "forceConsistentCasingInFileNames": true
+  },
+  "tsc-alias": {
+    "resolveFullPaths": true
+  },
+  "include": ["src/**/*", "swagger.json"],
+  "exclude": ["node_modules", "build/**/*"]
+}
