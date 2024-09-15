@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
-import { instance } from '../shared/api/instance';
+import { instance } from '../../shared/api/instance';
+import Market from '../../pagesFsd/market/Market';
+import { NextPage } from 'next';
 
-export default function Page() {
+const Home: NextPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -14,5 +16,7 @@ export default function Page() {
 
     fetchData();
   }, []);
-  return <h1>Hello, Next.js!</h1>;
-}
+  return <Market />;
+};
+
+export default Home;
