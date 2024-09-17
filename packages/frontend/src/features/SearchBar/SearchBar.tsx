@@ -8,6 +8,11 @@ const SearchBar: FC = () => {
   const handleInputChange = (e) => {
     setSearchItem(e.target.value);
   };
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
 
   const handleSearch = () => {
     console.log('Поиск:', searchItem);
@@ -21,6 +26,7 @@ const SearchBar: FC = () => {
         placeholder="Поиск..."
         value={searchItem}
         onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
       />
       <button className={Styles.searchButton} onClick={handleSearch}>
         <SearchIcon />
