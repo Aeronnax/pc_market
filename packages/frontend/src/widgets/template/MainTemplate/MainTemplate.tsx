@@ -1,11 +1,19 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import SectionWrap from '../../../entities/SectionWrap/SectionWrap';
 
-const MainTemplate: FC = () => {
+interface MainTemplateProps {
+  children?: ReactNode;
+}
+
+const MainTemplate: FC<MainTemplateProps> = ({ children }) => {
   return (
     <div>
       <Header />
+      <main>
+        <SectionWrap>{children}</SectionWrap>
+      </main>
       <Footer />
     </div>
   );
