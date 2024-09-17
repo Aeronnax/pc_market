@@ -1,12 +1,27 @@
-.searchBar {
-  display: flex;
-  align-items: center;
+.searchContainer {
+  position: relative;
   width: 100%;
   max-width: 500px;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #2021246e;
+  z-index: 10;
+}
+
+.searchBar {
+  position: relative;
+  display: flex;
+  align-items: center;
   background-color: #f1f3f4;
   border-radius: 24px;
   padding: 5px 10px;
   box-shadow: 1px 2px 6px #202124;
+  z-index: 20;
 }
 .searchInput {
   flex-grow: 1;
@@ -29,4 +44,17 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+}
+
+.clearButton {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #999;
+  margin-right: 10px;
+
+  &:hover {
+    color: #000;
+  }
 }
