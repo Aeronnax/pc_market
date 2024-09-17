@@ -1,4 +1,5 @@
 import React, { FC, useState } from 'react';
+import { createPortal } from 'react-dom';
 import Styles from './SearchBar.module.scss';
 import SearchIcon from '../../shared/icons/SearchIcon';
 
@@ -7,7 +8,7 @@ const SearchBar: FC = () => {
   const [isFocused, setIsFocused] = useState(false);
 
   const handleInputChange = (e) => {
-    setSearchItem(e.target.value);
+    setSearchItem(e.currentTarget.value);
   };
 
   const handleKeyDown = (e) => {
@@ -32,7 +33,11 @@ const SearchBar: FC = () => {
   };
   return (
     <div className={Styles.searchContainer}>
-      {isFocused && <div className={Styles.overlay} onClick={handleBlur}></div>}
+      {isFocused &&
+        createPortal(
+          <div className={Styles.overlay} onClick={handleBlur}></div>,
+          document.body
+        )}
       <div className={Styles.searchBar}>
         <input
           type="text"
@@ -50,7 +55,9 @@ const SearchBar: FC = () => {
           </button>
         )}
         <button className={Styles.searchButton} onClick={handleSearch}>
-          <SearchIcon />
+          <div className={Styles.searchIcon}>
+            <SearchIcon />
+          </div>
         </button>
       </div>
     </div>

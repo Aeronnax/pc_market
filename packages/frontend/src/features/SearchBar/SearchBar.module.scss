@@ -7,8 +7,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  right: 0;
+  bottom: 0;
   background-color: #2021246e;
   z-index: 10;
 }
@@ -24,7 +24,7 @@
   z-index: 20;
 }
 .searchInput {
-  flex-grow: 1;
+  flex: 1;
   border: none;
   outline: none;
   background: transparent;
@@ -44,6 +44,15 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+}
+
+.searchIcon {
+  width: 24px;
+  height: 24px;
+  fill: #5f6368;
+  &:hover {
+    fill: #202124;
+  }
 }
 
 .clearButton {
