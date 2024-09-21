@@ -1,5 +1,6 @@
 import { FC, useState } from 'react';
 import Styles from './CatalogMenu.module.scss';
+import CatalogDropdown from '../CatalogDropdown/CatalogDropdown';
 
 const CatalogMenu: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,6 +14,7 @@ const CatalogMenu: FC = () => {
       <button className={Styles.catalogButton} onClick={toggleMenu}>
         Каталог
       </button>
+      {isOpen && <CatalogDropdown />}
     </div>
   );
 };
