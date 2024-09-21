@@ -1,0 +1,16 @@
+.catalogMenu {
+  position: relative;
+}
+
+.catalogButton {
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+
+  &:hover {
+    background-color: #f5f5f5;
+  }
+}
