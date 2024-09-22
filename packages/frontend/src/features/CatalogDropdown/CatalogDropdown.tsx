@@ -1,25 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import Styles from './CatalogDropdown.module.scss';
+import { Category } from './types';
 
-const CatalogDropdown = () => {
-  const [activeCategory, setActiveCategory] = useState(null);
+interface CatalogDropdownProps {
+  categories: Category[];
+}
 
-  const categories = [
-    {
-      name: 'Комплектующие',
-      subcategories: ['Процессоры', 'Видеокарты', 'Материнские платы'],
-    },
-    {
-      name: 'Периферия',
-      subcategories: ['Клавиатуры', 'Мыши', 'Мониторы'],
-    },
-  ];
+const CatalogDropdown: FC<CatalogDropdownProps> = ({ categories }) => {
+  const [activeCategory, setActiveCategory] = useState<number | null>(null);
 
-  const handleMouseEnter = (index) => {
+  const handleMouseEnter = (index: number): void => {
     setActiveCategory(index);
   };
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = (): void => {
     setActiveCategory(null);
   };
 
@@ -38,7 +32,7 @@ const CatalogDropdown = () => {
               <ul className={Styles.subcategoryList}>
                 {category.subcategories.map((subcategory, subIndex) => (
                   <li key={subIndex} className={Styles.subcategoryItem}>
-                    {subcategory}
+                    {subcategory.name}
                   </li>
                 ))}
               </ul>
