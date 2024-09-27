@@ -1,49 +1,34 @@
 import { FC } from 'react';
 import { useFormik } from 'formik';
+import { z } from 'zod';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
 import Style from './LoginModal.module.scss';
+
+const validationSchema = z.object({
+  email: z
+    .string()
+    .min(1, 'Поле обязательно для заполнения')
+    .email('Неверный формат email')
+    .optional(),
+  password: z
+    .string()
+    .min(6, 'Минимальная длина пароля — 6 символов')
+    .regex(/[A-Z]/, 'Пароль должен содержать хотя бы одну заглавную букву')
+    .regex(/[!@#$%^&*]/, 'Пароль должен содержать хотя бы один спецсимвол')
+    .optional(),
+});
 
 interface LoginModalProps {
   closeModal: () => void;
 }
 
 const LoginModal: FC<LoginModalProps> = ({ closeModal }) => {
-  const validate = (values: { email: string; password: string }) => {
-    const errors: { email?: string; password?: string } = {};
-    if (!values.email) {
-      errors.email = 'Поле обязательно для заполнения';
-    } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-      errors.email = 'Неверный формат email';
-    }
-    switch (true) {
-      case !values.password:
-        errors.password = 'Поле обязательно для заполнения';
-        break;
-
-      case values.password.length < 6:
-        errors.password = 'Минимальная длина пароля — 6 символов';
-        break;
-
-      case !/[A-Z]/.test(values.password):
-        errors.password =
-          'Пароль должен содержать хотя бы одну заглавную букву';
-        break;
-
-      case !/[!@#$%^&*]/.test(values.password):
-        errors.password = 'Пароль должен содержать хотя бы один спецсимвол';
-        break;
-
-      default:
-        break;
-    }
-    return errors;
-  };
-
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
     },
-    validate,
+    validationSchema: toFormikValidationSchema(validationSchema),
     onSubmit: (values) => {
       console.log('Вход:', values);
       closeModal();
@@ -62,7 +47,7 @@ const LoginModal: FC<LoginModalProps> = ({ closeModal }) => {
           <input
             type="email"
             name="email"
-            autoComplete="email"
+            autoComplete="email login"
             placeholder="Введите почту"
             className={Style.inputField}
             value={formik.values.email}
