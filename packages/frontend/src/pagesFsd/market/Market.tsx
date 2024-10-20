@@ -1,6 +1,7 @@
 import { FC, useEffect } from 'react';
 import { instance } from '../../shared/api/instance';
 import MainTemplate from '../../widgets/template/MainTemplate/MainTemplate';
+import ProductItemModule from '../../widgets/market/ProductItemModule/ProductItemModule';
 
 const Market: FC = () => {
   useEffect(() => {
@@ -18,7 +19,7 @@ const Market: FC = () => {
 
   return (
     <MainTemplate>
-      <div>Тест</div>
+      <ProductItemModule />
     </MainTemplate>
   );
 };
