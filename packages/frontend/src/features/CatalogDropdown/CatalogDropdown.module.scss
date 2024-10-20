@@ -1,0 +1,59 @@
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 250px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 10px 0;
+  display: flex;
+}
+
+.categoryList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.categoryItem {
+  padding: 10px;
+  position: relative;
+  cursor: pointer;
+
+  width: 100%;
+
+  font-weight: bold;
+  color: #333;
+
+  &:hover {
+    color: #007bff;
+  }
+}
+
+.subcategoryItem {
+  padding: 10px;
+  cursor: pointer;
+  color: #555;
+
+  &:hover {
+    color: #007bff;
+  }
+}
+
+.subcategoryList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 200px;
+  background-color: #fff;
+  display: block;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+}
