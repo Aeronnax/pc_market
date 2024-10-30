@@ -1,5 +1,5 @@
 import React, { useState, FC, useMemo } from 'react';
-import Styles from './CartIcon.module.scss';
+import Styles from './CartButton.module.scss';
 import { useCartStore } from '../../shared/store/cart';
 import CartIcons from '../../shared/icons/CartIcons';
 import CartItemsList from '../../entities/template/CartItemsList/CartItemsList';

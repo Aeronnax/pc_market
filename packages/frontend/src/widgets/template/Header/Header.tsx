@@ -11,7 +11,9 @@ const Header: FC = () => {
     <header className={Styles.section}>
       <MainLogo />
       <CatalogMenu />
-      <SearchBar />
+      <div className={Styles.searchBar}>
+        <SearchBar />
+      </div>
       <LoginButton />
       <CartButton />
     </header>

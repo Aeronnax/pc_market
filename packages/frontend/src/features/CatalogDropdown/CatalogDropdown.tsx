@@ -1,6 +1,6 @@
 import React, { useState, FC } from 'react';
 import Styles from './CatalogDropdown.module.scss';
-import { Category } from './types';
+import { Category } from '../CatalogMenu/types';
 
 interface CatalogDropdownProps {
   categories: Category[];

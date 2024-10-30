@@ -3,7 +3,7 @@ interface Subcategory {
   id: string;
 }
 
-export interface CatalogMenuInfo {
+export interface Category {
   name: string;
   subcategories: Subcategory[];
 }

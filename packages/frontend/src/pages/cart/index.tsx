@@ -3,11 +3,7 @@ import { useCartStore } from '../../shared/store/cart';
 import Image from 'next/image';
 
 const CartPage: FC = () => {
-  const { cart, clearCart, removeFromCart } = useCartStore((state) => ({
-    cart: state.cart,
-    clearCart: state.clearCart,
-    removeFromCart: state.removeFromCart,
-  }));
+  const { cart, removeFromCart, clearCart } = useCartStore((state) => state);
 
   if (cart.length === 0) {
     return (

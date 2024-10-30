@@ -1,10 +1,10 @@
 import React, { useState, FC, useRef } from 'react';
 import Styles from './CatalogMenu.module.scss';
 import CatalogDropdown from '../CatalogDropdown/CatalogDropdown';
-import { CatalogMenuInfo } from './types';
+import { Category } from './types';
 import { useClickOutside } from '../../shared/helpers/useClickOutside';
 
-const categories: CatalogMenuInfo[] = [
+const categories: Category[] = [
   {
     name: 'Комплектующие',
     subcategories: [
@@ -24,7 +24,7 @@ const categories: CatalogMenuInfo[] = [
 ];
 
 const CatalogMenu: FC = () => {
-  const menuRef = useRef();
+  const menuRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleMenu = (): void => {

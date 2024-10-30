@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, ChangeEvent, KeyboardEvent } from 'react';
 import { createPortal } from 'react-dom';
 import Styles from './SearchBar.module.scss';
 import SearchIcon from '../../shared/icons/SearchIcon';
@@ -7,11 +7,11 @@ const SearchBar: FC = () => {
   const [searchItem, setSearchItem] = useState('');
   const [isFocused, setIsFocused] = useState(false);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchItem(e.currentTarget.value);
   };
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       handleSearch();
     }
