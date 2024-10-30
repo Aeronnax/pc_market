@@ -1,0 +1,40 @@
+.cartIcon {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  .cartCount {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+}
+.cartSvgIcon {
+  width: 28px;
+  height: 28px;
+  color: black;
+}
+
+.cartModal {
+  position: absolute;
+  top: calc(100% + 5px);
+  right: -30px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  z-index: 2000; // TODO: заменить на scss переменные
+  width: 400px;
+
+  h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+}
