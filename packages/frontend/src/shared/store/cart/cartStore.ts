@@ -4,17 +4,21 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 
 export interface CartState {
   cart: ProductWithQuantity[];
+  totalPrice: number;
 }
+
 export interface CartActions {
-  // TODO: Добавить возможность добавления нескольких элементов (опционально)
   addToCart: (product: Product) => void;
   removeFromCart: (id: number) => void;
   clearCart: () => void;
+  calculateTotalPrice: () => void;
 }
+
 export type CartStore = CartState & CartActions;
 
 export const defaultInitState: CartState = {
   cart: [],
+  totalPrice: 0,
 };
 
 export const createCartStore = (initState: CartState = defaultInitState) => {
@@ -44,11 +48,25 @@ export const createCartStore = (initState: CartState = defaultInitState) => {
             };
           }),
         removeFromCart: (id) =>
-          set((state) => ({
-            ...state,
-            cart: state.cart.filter((item) => item.id !== id),
-          })),
+          set((state) => {
+            const updatedCart = state.cart.filter((item) => item.id !== id);
+            return {
+              ...state,
+              cart: updatedCart,
+            };
+          }),
         clearCart: () => set((state) => ({ ...state, cart: [] })),
+        calculateTotalPrice: () =>
+          set((state) => {
+            const total = state.cart.reduce(
+              (sum, item) => sum + item.price * item.quantity,
+              0
+            );
+            return {
+              ...state,
+              totalPrice: total,
+            };
+          }),
       }),
       {
         name: 'cart-storage',

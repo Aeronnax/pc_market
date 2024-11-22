@@ -19,7 +19,7 @@ const mockProducts: Product[] = [
     image: gpu.src,
   },
 ];
-// TODO: Переименовать в  ProductItemsModule
+
 interface ProductItemModuleProps {
   products?: Product[];
 }

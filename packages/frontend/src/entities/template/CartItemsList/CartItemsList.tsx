@@ -16,7 +16,7 @@ const CartItemsList: FC<CartItemsListProps> = ({ cart }) => {
       {cart.map((item) => (
         <li key={item.id} className={Styles.item}>
           <Image src={item.image} alt={item.name} width={100} height={100} />
-          {item.name} - {item.quantity} шт. - {item.price} ₸
+          {item.name} - {item.quantity} шт. x {item.price} ₸
         </li>
       ))}
     </ul>

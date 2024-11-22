@@ -9,7 +9,7 @@ interface ProductItemProps {
 
 const ProductItem: FC<ProductItemProps> = ({ product }) => {
   return (
-    <div className={Styles.wrapper}>
+    <div>
       <Image src={product.image} alt={product.name} width={100} height={100} />
       <h3 className={Styles.productName}>{product.name}</h3>
       <p className={Styles.productPrice}>{product.price} ₸</p>
