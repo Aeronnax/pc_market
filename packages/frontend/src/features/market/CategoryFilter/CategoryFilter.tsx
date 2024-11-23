@@ -1,7 +1,7 @@
 import React, { FC, ChangeEventHandler } from 'react';
 import { useProductStore } from '../../../shared/store/productStore/productStore';
-
-const categories = ['Все', 'Видеокарты', 'Процессоры', 'Материнские платы'];
+import { categories } from './types';
+import { checkStrIsCategory } from './helpers';
 
 const CategoryFilter: FC = () => {
   const setCategoryFilter = useProductStore((state) => state.setCategoryFilter);
@@ -9,6 +9,9 @@ const CategoryFilter: FC = () => {
 
   const handleChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
     const value = event.currentTarget.value;
+    if (!checkStrIsCategory(value)) {
+      return;
+    }
     setCategoryFilter(value === 'Все' ? undefined : value);
   };
 
