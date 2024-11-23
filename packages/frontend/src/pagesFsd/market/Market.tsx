@@ -1,24 +1,19 @@
-import { FC, useEffect } from 'react';
-import { instance } from '../../shared/api/instance';
+import { FC, useLayoutEffect } from 'react';
 import MainTemplate from '../../widgets/template/MainTemplate/MainTemplate';
 import ProductItemModule from '../../widgets/market/ProductItemModule/ProductItemModule';
+import FiltersPanel from '../../widgets/market/FiltersPanel/FiltersPanel';
+import { useProductStore } from '../../shared/store/productStore/productStore';
 
 const Market: FC = () => {
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await instance.get('/users');
-        console.log(response.data);
-      } catch (error) {
-        console.error('Ошибка при получении данных:', error);
-      }
-    };
+  const fetchProducts = useProductStore((state) => state.fetchProducts);
 
-    fetchData();
+  useLayoutEffect(() => {
+    fetchProducts();
   }, []);
 
   return (
     <MainTemplate>
+      <FiltersPanel />
       <ProductItemModule />
     </MainTemplate>
   );

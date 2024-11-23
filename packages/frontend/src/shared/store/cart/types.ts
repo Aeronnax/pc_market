@@ -1,9 +1,5 @@
-export interface Product {
-  id: number;
-  name: string;
-  image: string;
-  price: number;
-}
+import { Product } from '../../api/products/types';
+
 export interface ProductWithQuantity extends Product {
   quantity: number;
 }

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import Styles from './ProductItem.module.scss';
 import Image from 'next/image';
-import { Product } from '../../../shared/store/cart';
+import { Product } from '../../../shared/api/products/types';
 
 interface ProductItemProps {
   product: Product;

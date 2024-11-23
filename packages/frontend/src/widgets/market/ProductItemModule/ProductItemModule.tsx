@@ -2,30 +2,20 @@ import React, { FC } from 'react';
 import ProductItem from '../../../entities/market/ProductItem/ProductItem';
 import AddToCartButton from '../../../features/AddToCartButton/AddToCartButton';
 import Styles from './ProductItemModule.module.scss';
-import gpu from './gpu.webp';
-import { Product } from '../../../shared/store/cart';
+import { isExist } from '../../../shared/helpers/isExist';
+import { useProductStore } from '../../../shared/store/productStore/productStore';
 
-const mockProducts: Product[] = [
-  {
-    id: 1,
-    name: 'Видеокарта 1',
-    price: 85452,
-    image: gpu.src,
-  },
-  {
-    id: 2,
-    name: 'Видеокарта 2',
-    price: 45452,
-    image: gpu.src,
-  },
-];
+// interface ProductItemModuleProps {}
+const ProductItemModule: FC = () => {
+  const products = useProductStore((state) => state.products);
+  const isLoading = useProductStore((state) => state.isLoading);
 
-interface ProductItemModuleProps {
-  products?: Product[];
-}
-const ProductItemModule: FC<ProductItemModuleProps> = ({
-  products = mockProducts,
-}) => {
+  if (!isExist(products) || isLoading) {
+    return <p>Загрузка...</p>;
+  }
+  if (products.length === 0) {
+    return <p>Нет данных</p>;
+  }
   return (
     <div className={Styles.grid}>
       {products.map((item) => (

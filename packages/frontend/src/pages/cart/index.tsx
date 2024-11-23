@@ -1,20 +1,21 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import Styles from './cartPage.module.scss';
 import { useCartStore } from '../../shared/store/cart';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
+// TODO: перенести в pagesFsd
 const CartPage: FC = () => {
-  const { cart, totalPrice, removeFromCart, clearCart, calculateTotalPrice } =
-    useCartStore((state) => state);
-
-  useEffect(() => {
-    calculateTotalPrice();
-  }, [cart, calculateTotalPrice]);
+  const { cart, totalPrice, removeFromCart, clearCart } = useCartStore(
+    (state) => state
+  );
+  const { back } = useRouter();
 
   if (cart.length === 0) {
     return (
       <div className={Styles.cartPage}>
         <h2>Корзина</h2>
+        <button onClick={back}>Назад</button>
         <p className={Styles.emptyCart}>Корзина пуста</p>
       </div>
     );
@@ -23,9 +24,11 @@ const CartPage: FC = () => {
   return (
     <div className={Styles.cartPage}>
       <h2>Корзина</h2>
+      <button onClick={back}>Назад</button>
       <ul>
         {cart.map((item) => (
           <li key={item.id} className={Styles.cartItem}>
+            {/* TODO: вынести в отдельный компонент */}
             <div className={Styles.imageCart}>
               <Image src={item.image} alt={item.name} width={80} height={80} />
             </div>
