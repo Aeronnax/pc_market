@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import ProductItem from '../../../entities/market/ProductItem/ProductItem';
 import AddToCartButton from '../../../features/AddToCartButton/AddToCartButton';
-import Styles from './ProductItemModule.module.scss';
+import Styles from './ProductItemsModule.module.scss';
 import { isExist } from '../../../shared/helpers/isExist';
 import { useProductStore } from '../../../shared/store/productStore/productStore';
 
 // interface ProductItemModuleProps {}
-const ProductItemModule: FC = () => {
+const ProductItemsModule: FC = () => {
   const products = useProductStore((state) => state.products);
   const isLoading = useProductStore((state) => state.isLoading);
 
@@ -28,4 +28,4 @@ const ProductItemModule: FC = () => {
   );
 };
 
-export default ProductItemModule;
+export default ProductItemsModule;

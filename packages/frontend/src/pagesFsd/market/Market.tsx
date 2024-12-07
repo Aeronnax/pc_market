@@ -1,6 +1,6 @@
 import { FC, useLayoutEffect } from 'react';
 import MainTemplate from '../../widgets/template/MainTemplate/MainTemplate';
-import ProductItemModule from '../../widgets/market/ProductItemModule/ProductItemModule';
+import ProductItemsModule from '../../widgets/market/ProductItemModule/ProductItemsModule';
 import FiltersPanel from '../../widgets/market/FiltersPanel/FiltersPanel';
 import { useProductStore } from '../../shared/store/productStore/productStore';
 
@@ -14,7 +14,7 @@ const Market: FC = () => {
   return (
     <MainTemplate>
       <FiltersPanel />
-      <ProductItemModule />
+      <ProductItemsModule />
     </MainTemplate>
   );
 };
