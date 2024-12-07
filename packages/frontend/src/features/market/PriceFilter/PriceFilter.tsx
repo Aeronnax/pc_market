@@ -7,21 +7,14 @@ const PriceFilter: FC = () => {
   const minPrice = priceRange?.[0];
   const maxPrice = priceRange?.[1];
 
-  const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const min = Number(e.currentTarget.value);
-    if (Number.isNaN(min)) {
-      return;
-    }
-    setPriceFilter([min, maxPrice]);
-  };
-
-  const handleMaxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const max = Number(e.currentTarget.value);
-    if (Number.isNaN(max)) {
-      return;
-    }
-    setPriceFilter([minPrice, max]);
-  };
+  const handlePriceChange =
+    (type: 'min' | 'max') => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = Number(e.currentTarget.value);
+      if (Number.isNaN(value)) {
+        return;
+      }
+      setPriceFilter(type === 'min' ? [value, maxPrice] : [minPrice, value]);
+    };
 
   return (
     <div>
@@ -29,13 +22,13 @@ const PriceFilter: FC = () => {
       <input
         type="number"
         value={minPrice ?? ''}
-        onChange={handleMinChange}
+        onChange={handlePriceChange('min')}
         placeholder="Минимальная цена"
       />
       <input
         type="number"
         value={maxPrice ?? ''}
-        onChange={handleMaxChange}
+        onChange={handlePriceChange('max')}
         placeholder="Максимальная цена"
       />
     </div>

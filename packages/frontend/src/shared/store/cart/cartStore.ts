@@ -14,6 +14,7 @@ export interface CartActions {
   addToCart: (product: Product) => void;
   removeFromCart: (id: number) => void;
   clearCart: () => void;
+  // TODO: Добавить возможность добавления нескольких элементов (опционально)
 }
 
 export type CartStore = CartState & CartActions;
@@ -38,22 +39,21 @@ export const createCartStore = (initState: CartState = defaultInitState) => {
         addToCart: (product) => {
           const state = get();
 
-          const existingProduct = state.cart.find(
+          const productIndex = state.cart.findIndex(
             (item) => item.id === product.id
           );
-          if (!existingProduct) {
+
+          if (productIndex === -1) {
             state.setCart([...state.cart, { ...product, quantity: 1 }]);
             return;
           }
 
-          state.setCart(
-            state.cart.map((item) =>
-              item.id === product.id
-                ? { ...item, quantity: item.quantity + 1 }
-                : item
-            )
-          );
+          const updatedCart = [...state.cart];
+          updatedCart[productIndex].quantity += 1;
+
+          state.setCart(updatedCart);
         },
+
         removeFromCart: (id) => {
           const state = get();
 
