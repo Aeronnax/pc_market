@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import Styles from './cartPage.module.scss';
 import { useCartStore } from '../../shared/store/cart';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
+import CartItem from '../../entities/CartItem/CartItem';
 
 const CartPage: FC = () => {
   const { cart, totalPrice, removeFromCart, clearCart } = useCartStore(
@@ -26,28 +26,7 @@ const CartPage: FC = () => {
       <button onClick={back}>Назад</button>
       <ul>
         {cart.map((item) => (
-          <li key={item.id} className={Styles.cartItem}>
-            {/* TODO: вынести в отдельный компонент */}
-            <div className={Styles.imageCart}>
-              <Image src={item.image} alt={item.name} width={80} height={80} />
-            </div>
-            <div className={Styles.itemDetails}>
-              <div className={Styles.itemName}>{item.name}</div>
-              <div className={Styles.itemPricePerUnit}>
-                Цена за штуку: {item.price} ₸
-              </div>
-              <div className={Styles.itemQuantity}>{item.quantity} шт.</div>
-            </div>
-            <div className={Styles.itemTotalPrice}>
-              {item.price * item.quantity} ₸
-            </div>
-            <button
-              onClick={() => removeFromCart(item.id)}
-              className={Styles.clearButton}
-            >
-              Удалить
-            </button>
-          </li>
+          <CartItem key={item.id} item={item} onRemove={removeFromCart} />
         ))}
       </ul>
       <div className={Styles.cartSummary}>
