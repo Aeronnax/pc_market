@@ -4,7 +4,6 @@ import { useCartStore } from '../../shared/store/cart';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-// TODO: перенести в pagesFsd
 const CartPage: FC = () => {
   const { cart, totalPrice, removeFromCart, clearCart } = useCartStore(
     (state) => state
