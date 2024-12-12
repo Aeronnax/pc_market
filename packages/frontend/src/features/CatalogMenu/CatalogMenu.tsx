@@ -1,8 +1,8 @@
 import React, { useState, FC, useRef } from 'react';
 import Styles from './CatalogMenu.module.scss';
-import CatalogDropdown from '../CatalogDropdown/CatalogDropdown';
+import CatalogDropdown from 'src/features/CatalogDropdown/CatalogDropdown';
 import { Category } from './types';
-import { useClickOutside } from '../../shared/helpers/useClickOutside';
+import { useClickOutside } from 'src/shared/helpers/useClickOutside';
 
 const categories: Category[] = [
   {

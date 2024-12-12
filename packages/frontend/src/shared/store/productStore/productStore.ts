@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { Filters } from './types';
-import { Product } from '../../api/products/types';
-import { getProducts } from '../../api/products/products';
+import { Product } from 'src/shared/api/products/types';
+import { getProducts } from 'src/shared/api/products/products';
 import { transformFilters } from './helpers';
 import { devtools } from 'zustand/middleware';
 

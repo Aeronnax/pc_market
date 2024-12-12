@@ -1,4 +1,4 @@
-import { ProductCategory } from '../../api/products/types';
+import { ProductCategory } from 'src/shared/api/products/types';
 
 export interface Filters {
   category?: ProductCategory;

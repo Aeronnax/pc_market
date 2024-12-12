@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { useCartStore } from '../../shared/store/cart';
-import { Product } from '../../shared/api/products/types';
+import { useCartStore } from 'src/shared/store/cart';
+import { Product } from 'src/shared/api/products/types';
 import Styles from './AddToCartButton.module.scss';
 
 interface AddToCartButtonProps {

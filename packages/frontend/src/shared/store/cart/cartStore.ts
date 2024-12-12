@@ -1,6 +1,6 @@
 import { createStore } from 'zustand';
 import { ProductWithQuantity } from './types';
-import { Product } from '../../api/products/types';
+import { Product } from 'src/shared/api/products/types';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { calculateTotalPrice } from './helpers';
 
@@ -11,10 +11,9 @@ export interface CartState {
 
 export interface CartActions {
   setCart: (newCart: ProductWithQuantity[]) => void;
-  addToCart: (product: Product) => void;
+  addToCart: (product: Product, count?: number) => void;
   removeFromCart: (id: number) => void;
   clearCart: () => void;
-  // TODO: Добавить возможность добавления нескольких элементов (опционально)
 }
 
 export type CartStore = CartState & CartActions;
@@ -36,7 +35,7 @@ export const createCartStore = (initState: CartState = defaultInitState) => {
           });
         },
 
-        addToCart: (product) => {
+        addToCart: (product, count = 1) => {
           const state = get();
 
           const productIndex = state.cart.findIndex(
@@ -44,12 +43,12 @@ export const createCartStore = (initState: CartState = defaultInitState) => {
           );
 
           if (productIndex === -1) {
-            state.setCart([...state.cart, { ...product, quantity: 1 }]);
+            state.setCart([...state.cart, { ...product, quantity: count }]);
             return;
           }
 
           const updatedCart = [...state.cart];
-          updatedCart[productIndex].quantity += 1;
+          updatedCart[productIndex].quantity += count;
 
           state.setCart(updatedCart);
         },

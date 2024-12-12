@@ -1,5 +1,5 @@
-import { addTimeout } from '../../helpers/addTimeout';
-import { isExist } from '../../helpers/isExist';
+import { addTimeout } from 'src/shared/helpers/addTimeout';
+import { isExist } from 'src/shared/helpers/isExist';
 import { mockProducts } from './mocks';
 import { GetProductsRequest, GetProductsResponse, Product } from './types';
 
@@ -20,7 +20,7 @@ const sortProducts = (products: Product[]): Product[] => {
   return [...products].sort((a, b) => a.id - b.id);
 };
 
-// TODO: Убрать моки, подключить бэк
+// TODO: Убрать моки, подключить бэк в рамках #8
 export const getProducts = (
   request: GetProductsRequest
 ): Promise<GetProductsResponse> => {

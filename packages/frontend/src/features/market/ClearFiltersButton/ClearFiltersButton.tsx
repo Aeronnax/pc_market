@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useProductStore } from '../../../shared/store/productStore/productStore';
+import { useProductStore } from 'src/shared/store/productStore/productStore';
 
 const ClearFiltersButton: FC = () => {
   const clearFilters = useProductStore((state) => state.clearFilters);

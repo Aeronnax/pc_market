@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import Styles from './CartItemsList.module.scss';
 import Image from 'next/image';
-import { ProductWithQuantity } from '../../../shared/store/cart/types';
+import { ProductWithQuantity } from 'src/shared/store/cart/types';
 
 interface CartItemsListProps {
   cart: ProductWithQuantity[];

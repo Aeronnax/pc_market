@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
-import ProductItem from '../../../entities/market/ProductItem/ProductItem';
-import AddToCartButton from '../../../features/AddToCartButton/AddToCartButton';
+import ProductItem from 'src/entities/market/ProductItem/ProductItem';
+import AddToCartButton from 'src/features/AddToCartButton/AddToCartButton';
 import Styles from './ProductItemsModule.module.scss';
-import { isExist } from '../../../shared/helpers/isExist';
-import { useProductStore } from '../../../shared/store/productStore/productStore';
+import { isExist } from 'src/shared/helpers/isExist';
+import { useProductStore } from 'src/shared/store/productStore/productStore';
 
 // interface ProductItemModuleProps {}
 const ProductItemsModule: FC = () => {

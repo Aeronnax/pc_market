@@ -1,0 +1,49 @@
+.cartItem {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #e0e0e0;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+.imageCart {
+  margin-right: 15px;
+}
+
+.itemDetails {
+  flex-grow: 1;
+}
+.itemName {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.itemPricePerUnit {
+  font-size: 16px;
+  color: #666;
+}
+.itemQuantity {
+  font-size: 16px;
+  color: #666;
+  margin-top: 5px;
+}
+.itemTotalPrice {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+.clearButton {
+  background: none;
+  border: none;
+  color: #ff4d4d;
+  cursor: pointer;
+  margin-left: 20px;
+  font-size: 14px;
+  transition: color 0.3s;
+
+  &:hover {
+    color: #cc0000;
+  }
+}

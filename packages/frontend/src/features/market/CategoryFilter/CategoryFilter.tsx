@@ -1,5 +1,5 @@
 import React, { FC, ChangeEventHandler } from 'react';
-import { useProductStore } from '../../../shared/store/productStore/productStore';
+import { useProductStore } from 'src/shared/store/productStore/productStore';
 import { categories } from './types';
 import { checkStrIsCategory } from './helpers';
 
