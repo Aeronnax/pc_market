@@ -20,7 +20,7 @@ const sortProducts = (products: Product[]): Product[] => {
   return [...products].sort((a, b) => a.id - b.id);
 };
 
-// TODO: Убрать моки, подключить бэк
+// TODO: Убрать моки, подключить бэк в рамках #8
 export const getProducts = (
   request: GetProductsRequest
 ): Promise<GetProductsResponse> => {
