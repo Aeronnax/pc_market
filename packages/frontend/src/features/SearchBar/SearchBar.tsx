@@ -1,6 +1,7 @@
 import React, { FC, useState, ChangeEvent, KeyboardEvent } from 'react';
 import { createPortal } from 'react-dom';
 import Styles from './SearchBar.module.scss';
+import clsx from 'clsx';
 import SearchIcon from '../../shared/icons/SearchIcon';
 
 const SearchBar: FC = () => {
@@ -38,7 +39,7 @@ const SearchBar: FC = () => {
           <div className={Styles.overlay} onClick={handleBlur}></div>,
           document.body
         )}
-      <div className={Styles.searchBar}>
+      <div className={clsx(Styles.searchBar, isFocused && Styles.focused)}>
         <input
           type="text"
           className={Styles.searchInput}
