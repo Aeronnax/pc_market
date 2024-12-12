@@ -1,8 +1,8 @@
-import Market from 'src/pagesFsd/market/Market';
+import CartPage from 'src/pagesFsd/cart/CartPage';
 import { NextPage } from 'next';
 
 const Home: NextPage = () => {
-  return <Market />;
+  return <CartPage />;
 };
 
 export default Home;

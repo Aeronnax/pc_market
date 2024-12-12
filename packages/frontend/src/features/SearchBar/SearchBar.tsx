@@ -2,7 +2,7 @@ import React, { FC, useState, ChangeEvent, KeyboardEvent } from 'react';
 import { createPortal } from 'react-dom';
 import Styles from './SearchBar.module.scss';
 import clsx from 'clsx';
-import SearchIcon from '../../shared/icons/SearchIcon';
+import SearchIcon from 'src/shared/icons/SearchIcon';
 
 const SearchBar: FC = () => {
   const [searchItem, setSearchItem] = useState('');

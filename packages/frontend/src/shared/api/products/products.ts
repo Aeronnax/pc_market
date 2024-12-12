@@ -1,5 +1,5 @@
-import { addTimeout } from '../../helpers/addTimeout';
-import { isExist } from '../../helpers/isExist';
+import { addTimeout } from 'src/shared/helpers/addTimeout';
+import { isExist } from 'src/shared/helpers/isExist';
 import { mockProducts } from './mocks';
 import { GetProductsRequest, GetProductsResponse, Product } from './types';
 

@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import Styles from './cartPage.module.scss';
-import { useCartStore } from '../../shared/store/cart';
+import { useCartStore } from 'src/shared/store/cart';
 import { useRouter } from 'next/router';
-import CartItem from '../../entities/CartItem/CartItem';
+import CartItem from 'src/entities/CartItem/CartItem';
 
 const CartPage: FC = () => {
   const { cart, totalPrice, removeFromCart, clearCart } = useCartStore(

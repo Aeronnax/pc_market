@@ -1,6 +1,6 @@
 import { createStore } from 'zustand';
 import { ProductWithQuantity } from './types';
-import { Product } from '../../api/products/types';
+import { Product } from 'src/shared/api/products/types';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { calculateTotalPrice } from './helpers';
 

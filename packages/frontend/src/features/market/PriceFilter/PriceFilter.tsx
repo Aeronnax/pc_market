@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useProductStore } from '../../../shared/store/productStore/productStore';
+import { useProductStore } from 'src/shared/store/productStore/productStore';
 
 const PriceFilter: FC = () => {
   const setPriceFilter = useProductStore((state) => state.setPriceFilter);

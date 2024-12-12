@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import MainLogo from '../../../entities/market/MainLogo/MainLogo';
+import MainLogo from 'src/entities/market/MainLogo/MainLogo';
 import Styles from './Header.module.scss';
-import SearchBar from '../../../features/SearchBar/SearchBar';
-import CatalogMenu from '../../../features/CatalogMenu/CatalogMenu';
-import LoginButton from '../../../features/LoginButton/LoginButton';
-import CartButton from '../../../features/CartButton/CartButton';
+import SearchBar from 'src/features/SearchBar/SearchBar';
+import CatalogMenu from 'src/features/CatalogMenu/CatalogMenu';
+import LoginButton from 'src/features/LoginButton/LoginButton';
+import CartButton from 'src/features/CartButton/CartButton';
 
 const Header: FC = () => {
   return (

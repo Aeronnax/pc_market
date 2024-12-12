@@ -1,4 +1,4 @@
-import { GetProductsRequest } from '../../api/products/types';
+import { GetProductsRequest } from 'src/shared/api/products/types';
 import { Filters } from './types';
 
 export const transformFilters = (store: Filters): GetProductsRequest => {
