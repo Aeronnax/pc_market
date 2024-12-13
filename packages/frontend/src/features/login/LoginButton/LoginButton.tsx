@@ -1,5 +1,5 @@
 import { useState, FC } from 'react';
-import LoginModal from 'src/features/LoginModal/LoginModal';
+import LoginModal from 'src/features/login/LoginModal/LoginModal';
 import Style from './LoginButton.module.scss';
 const LoginButton: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

@@ -1,6 +1,6 @@
 import React, { useState, FC, useRef } from 'react';
 import Styles from './CatalogMenu.module.scss';
-import CatalogDropdown from 'src/features/CatalogDropdown/CatalogDropdown';
+import CatalogDropdown from 'src/features/market/CatalogDropdown/CatalogDropdown';
 import { Category } from './types';
 import { useClickOutside } from 'src/shared/helpers/useClickOutside';
 

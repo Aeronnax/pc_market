@@ -2,7 +2,7 @@ import React, { useState, FC, useMemo } from 'react';
 import Styles from './CartButton.module.scss';
 import { useCartStore } from 'src/shared/store/cart';
 import CartIcons from 'src/shared/icons/CartIcons';
-import CartItemsList from 'src/entities/template/CartItemsList/CartItemsList';
+import CartItemsList from 'src/entities/cart/CartItemsList/CartItemsList';
 import Link from 'next/link';
 
 const CartButton: FC = () => {
