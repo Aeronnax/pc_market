@@ -5,7 +5,7 @@ import { AppDataSource } from 'src/database/data-source';
 import { CategoriesEntity } from 'src/entities/Categories/Categories.entity';
 
 @Route('categories')
-@Tags('Categories')
+@Tags('Product')
 export class CategoriesController extends Controller {
   private readonly service = new CategoriesService(AppDataSource.getRepository(CategoriesEntity));
 
@@ -15,7 +15,7 @@ export class CategoriesController extends Controller {
   }
 
   @Get('{categoryId}')
-  public async getCategory(@Path() categoryId: string): Promise<CategoriesDTO> {
-    return this.service.getOne(Number(categoryId));
+  public async getCategory(@Path() categoryId: CategoriesDTO['id']): Promise<CategoriesDTO> {
+    return this.service.getOne(categoryId);
   }
 }

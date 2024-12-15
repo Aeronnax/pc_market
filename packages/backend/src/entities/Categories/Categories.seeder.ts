@@ -6,7 +6,7 @@ export class CategoriesSeeder implements Seeder {
   public async run(dataSource: DataSource): Promise<void> {
     const repository = dataSource.getRepository(CategoriesEntity);
 
-    const categories = [
+    const categories: Omit<CategoriesEntity, 'id'>[] = [
       { name: 'Процессоры' },
       { name: 'Видеокарты' },
       { name: 'Материнские платы' },

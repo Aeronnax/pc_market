@@ -1,9 +1,12 @@
+import { CategoriesDTO } from '../Categories/Categories.DTO';
+
 /**
  * Стандартный DTO для продукта
  * @tsoaModel
  */
 export interface ProductDTO {
   /**
+   * @isInt
    * @example 1
    */
   id: number;
@@ -19,20 +22,16 @@ export interface ProductDTO {
   description: string;
 
   /**
-   * @example 125548
+   * @example 12554.80
    */
   price: number;
 
   /**
-   * @example 1
-   * @description ID категории продукта
+   * @description Категория продукта
    */
-  categoryId: number;
+  category: CategoriesDTO;
 }
 
-/**
- * Данные для создания или обновления продукта
- * @tsoaModel
- */
-export interface ProductCreationParams
-  extends Pick<ProductDTO, 'name' | 'description' | 'price' | 'categoryId'> {}
+export interface ProductListRequestDTO {
+  categoryId?: CategoriesDTO['id'];
+}

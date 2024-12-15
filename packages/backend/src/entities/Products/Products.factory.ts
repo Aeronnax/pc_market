@@ -10,6 +10,7 @@ export const ProductsFactory = setSeederFactory(ProductsEntity, async (faker) =>
   const randomCategory = faker.helpers.arrayElement(categories);
 
   const product = new ProductsEntity();
+
   product.name = faker.commerce.productName();
   product.description = faker.commerce.productDescription();
   product.price = parseFloat(faker.commerce.price());

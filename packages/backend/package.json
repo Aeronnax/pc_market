@@ -19,7 +19,7 @@
     "lint:check": "eslint .",
     "prettier": "prettier --write .",
     "prettier:check": "prettier --check .",
-    "check": "yarn run types && yarn run lint && yarn run prettier",
+    "check": "yarn run types && yarn run lint:check && yarn run prettier:check",
     "----DATABASE": "",
     "typeorm": "typeorm-ts-node-esm -d ./src/database/data-source",
     "db:create": "npx vite-node src/database/actions/dbCreate.ts",
