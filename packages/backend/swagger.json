@@ -110,6 +110,94 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"ProductDTO": {
+				"description": "Стандартный DTO для продукта",
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double",
+						"example": 1
+					},
+					"name": {
+						"type": "string",
+						"example": "Intel-core i7"
+					},
+					"description": {
+						"type": "string",
+						"example": "Горячая штучка"
+					},
+					"price": {
+						"type": "number",
+						"format": "double",
+						"example": 125548
+					},
+					"categoryId": {
+						"type": "number",
+						"format": "double",
+						"example": 1
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"description",
+					"price",
+					"categoryId"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ProductCreationParams": {
+				"description": "Данные для создания или обновления продукта",
+				"properties": {
+					"name": {
+						"type": "string",
+						"example": "Intel-core i7"
+					},
+					"description": {
+						"type": "string",
+						"example": "Горячая штучка"
+					},
+					"price": {
+						"type": "number",
+						"format": "double",
+						"example": 125548
+					},
+					"categoryId": {
+						"type": "number",
+						"format": "double",
+						"example": 1
+					}
+				},
+				"required": [
+					"name",
+					"description",
+					"price",
+					"categoryId"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CategoriesDTO": {
+				"description": "Стандартная DTO для категории",
+				"properties": {
+					"id": {
+						"type": "integer",
+						"format": "int32",
+						"example": 1
+					},
+					"name": {
+						"type": "string",
+						"example": "Процессоры"
+					}
+				},
+				"required": [
+					"id",
+					"name"
+				],
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -342,6 +430,289 @@
 						"schema": {
 							"format": "double",
 							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/products": {
+			"get": {
+				"operationId": "ListProducts",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/ProductDTO"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Получить список всех товаров",
+				"tags": [
+					"Product"
+				],
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "CreateProduct",
+				"responses": {
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ProductDTO"
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ValidateErrorJSON"
+								},
+								"examples": {
+									"Example 1": {}
+								}
+							}
+						}
+					}
+				},
+				"description": "Создание нового товара",
+				"tags": [
+					"Product"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"description": "Данные товара",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ProductCreationParams",
+								"description": "Данные товара"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/products/{productId}": {
+			"get": {
+				"operationId": "GetProduct",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ProductDTO"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/NotFoundErrorJSON"
+								},
+								"examples": {
+									"Example 1": {}
+								}
+							}
+						}
+					}
+				},
+				"description": "Получить конкретный товар",
+				"tags": [
+					"Product"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "ID товара",
+						"in": "path",
+						"name": "productId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			},
+			"put": {
+				"operationId": "UpdateProduct",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ProductDTO"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/NotFoundErrorJSON"
+								},
+								"examples": {
+									"Example 1": {}
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ValidateErrorJSON"
+								},
+								"examples": {
+									"Example 1": {}
+								}
+							}
+						}
+					}
+				},
+				"description": "Обновление данных товара",
+				"tags": [
+					"Product"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "ID товара",
+						"in": "path",
+						"name": "productId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				],
+				"requestBody": {
+					"description": "Новые данные товара",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ProductCreationParams",
+								"description": "Новые данные товара"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "DeleteProduct",
+				"responses": {
+					"204": {
+						"description": "No content"
+					},
+					"404": {
+						"description": "Not found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/NotFoundErrorJSON"
+								},
+								"examples": {
+									"Example 1": {}
+								}
+							}
+						}
+					}
+				},
+				"description": "Удаление товара",
+				"tags": [
+					"Product"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "ID товара",
+						"in": "path",
+						"name": "productId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/categories": {
+			"get": {
+				"operationId": "GetCategories",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/CategoriesDTO"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Categories"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/categories/{categoryId}": {
+			"get": {
+				"operationId": "GetCategory",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CategoriesDTO"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Categories"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "categoryId",
+						"required": true,
+						"schema": {
+							"type": "string"
 						}
 					}
 				]

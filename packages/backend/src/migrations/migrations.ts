@@ -1,5 +1,5 @@
 import type { BaseDataSourceOptions } from 'typeorm/data-source/BaseDataSourceOptions';
 
-import { CreateUsersTable1713124501156 } from 'src/migrations/1713124501156-CreateUsersTable';
+import { CreateProductTable1734224671810 } from './1734224671810-CreateProductTable';
 
-export const migrations: BaseDataSourceOptions['migrations'] = [CreateUsersTable1713124501156];
+export const migrations: BaseDataSourceOptions['migrations'] = [CreateProductTable1734224671810];

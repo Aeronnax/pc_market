@@ -1,5 +1,5 @@
-import type { SeederFactoryItem } from 'typeorm-extension';
+import { SeederFactoryItem } from 'typeorm-extension';
+import { CategoriesFactory } from './Categories/Categories.factory';
+import { ProductsFactory } from './Products/Products.factory';
 
-import { UsersFactory } from './Users/Users.factory';
-
-export const factories: SeederFactoryItem[] = [UsersFactory];
+export const factories: SeederFactoryItem[] = [CategoriesFactory, ProductsFactory];
