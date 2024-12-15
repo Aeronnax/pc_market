@@ -1,7 +1,14 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .productName {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .productPrice {

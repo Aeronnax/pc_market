@@ -11,7 +11,7 @@
     "lint:check": "eslint .",
     "prettier": "prettier --write .",
     "prettier:check": "prettier --check .",
-    "check": "yarn run types && yarn run lint && yarn run prettier",
+    "check": "yarn run types && yarn run lint:check && yarn run prettier:check",
     "generate-api-types": "dtsgen --out ./src/shared/api/swagger.d.ts ./../backend/swagger.json"
   },
   "dependencies": {

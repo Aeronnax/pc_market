@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import Styles from './cartItem.module.scss';
-import Image from 'next/image';
 import { ProductWithQuantity } from 'src/shared/store/cart/types';
 
 interface CartItemProps {
@@ -12,7 +11,7 @@ const CartItem: FC<CartItemProps> = ({ item, onRemove }) => {
   return (
     <li className={Styles.cartItem}>
       <div className={Styles.imageCart}>
-        <Image src={item.image} alt={item.name} width={80} height={80} />
+        <div style={{ width: 80, height: 80, backgroundColor: 'gray' }} />
       </div>
       <div className={Styles.itemDetails}>
         <div className={Styles.itemName}>{item.name}</div>
