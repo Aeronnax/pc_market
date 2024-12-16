@@ -45,7 +45,8 @@ export const useProductStore = create<ProductStore>()(
         set({ isLoading: true });
       }
       getProducts(transformFilters(filtersLocal)).then((res) => {
-        set({ products: res, isLoading: false });
+        const data = res.data;
+        set({ products: data, isLoading: false });
       });
     },
 

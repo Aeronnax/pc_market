@@ -1,3 +1,5 @@
+import { AxiosResponse } from 'axios';
+
 export const categories = [
   'Видеокарты',
   'Процессоры',
@@ -5,16 +7,11 @@ export const categories = [
 ] as const;
 export type ProductCategory = (typeof categories)[number];
 
-export interface Product {
-  id: number;
-  name: string;
-  image: string;
-  price: number;
-  category: ProductCategory;
-}
+export type Product = Components.Schemas.ProductDTO;
+
 export interface GetProductsRequest {
   category?: ProductCategory;
   priceFrom?: number;
   priceTo?: number;
 }
-export type GetProductsResponse = Product[];
+export type GetProductsResponse = AxiosResponse<Product[]>;
