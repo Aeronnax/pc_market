@@ -165,6 +165,75 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"SortDTO_ProductDTO_": {
+				"properties": {
+					"by": {
+						"type": "string",
+						"enum": [
+							"id",
+							"name",
+							"description",
+							"price",
+							"category"
+						],
+						"nullable": false,
+						"description": "Поле для сортировки"
+					},
+					"order": {
+						"type": "string",
+						"enum": [
+							"asc",
+							"desc"
+						],
+						"description": "Порядок сортировки"
+					}
+				},
+				"required": [
+					"by",
+					"order"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ProductListRequestDTO": {
+				"description": "Запрос для получения списка продуктов",
+				"properties": {
+					"take": {
+						"type": "number",
+						"format": "double",
+						"description": "Кол-во необходимых элементов"
+					},
+					"skip": {
+						"type": "number",
+						"format": "double",
+						"description": "Кол-во элементов, которые нужно пропустить (например они были запрошены ранее)"
+					},
+					"categoryId": {
+						"type": "number",
+						"format": "double",
+						"description": "ID категории для фильтрации"
+					},
+					"minPrice": {
+						"type": "number",
+						"format": "double",
+						"description": "Минимальная цена"
+					},
+					"maxPrice": {
+						"type": "number",
+						"format": "double",
+						"description": "Максимальная цена"
+					},
+					"sort": {
+						"$ref": "#/components/schemas/SortDTO_ProductDTO_"
+					}
+				},
+				"required": [
+					"take",
+					"skip"
+				],
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -403,8 +472,8 @@
 			}
 		},
 		"/products": {
-			"get": {
-				"operationId": "ListProducts",
+			"post": {
+				"operationId": "GetFilteredProducts",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -420,12 +489,22 @@
 						}
 					}
 				},
-				"description": "Получить список всех товаров",
+				"description": "Получить список товаров с фильтрацией и пагинацией",
 				"tags": [
 					"Product"
 				],
 				"security": [],
-				"parameters": []
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ProductListRequestDTO"
+							}
+						}
+					}
+				}
 			}
 		},
 		"/products/{productId}": {

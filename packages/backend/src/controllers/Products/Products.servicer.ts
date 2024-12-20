@@ -1,18 +1,47 @@
 import { AppDataSource } from 'src/database/data-source';
 import { ProductsEntity } from 'src/entities/Products/Products.entity';
+import { ProductDTO, ProductListRequestDTO } from 'src/controllers/Products/Products.DTO';
+import { FindManyOptions, FindOptionsWhere } from 'typeorm';
+import { isExist } from 'src/helpers/isExist';
+import { getMinMaxFilter } from 'src/helpers/db/getMinMaxFilter';
+import { getSortRequest } from 'src/helpers/db/getSortRequest';
+import { addPaginationToRequest } from 'src/helpers/db/addPaginationToRequest';
 import { NotFoundError } from 'src/helpers/errors';
-import type { ProductDTO } from 'src/controllers/Products/Products.DTO';
 
 export class ProductsService {
   private productRepository = AppDataSource.getRepository(ProductsEntity);
 
-  private mapToDTO(product: ProductsEntity): ProductDTO {
-    return product;
+  private mapToDTO({ id, name, description, price, category }: ProductsEntity): ProductDTO {
+    return { id, name, description, price, category };
   }
 
-  public async getAll(): Promise<ProductDTO[]> {
-    const products = await this.productRepository.find({ relations: ['category'] });
-    return products.map(this.mapToDTO.bind(this));
+  /**
+   * Получить список товаров с фильтрацией.
+   * @param filters Параметры фильтрации
+   */
+  public async getMany(filters: ProductListRequestDTO): Promise<ProductDTO[]> {
+    const dbRequest: FindManyOptions<ProductsEntity> = {
+      relations: {
+        category: true,
+      },
+    };
+
+    dbRequest.order = getSortRequest(filters.sort);
+
+    addPaginationToRequest(dbRequest, filters);
+
+    const filtersRequest: FindOptionsWhere<ProductsEntity> = {};
+    dbRequest.where = filtersRequest;
+
+    if (isExist(filters.categoryId)) {
+      filtersRequest.category = {
+        id: filters.categoryId,
+      };
+    }
+
+    filtersRequest.price = getMinMaxFilter(filters.minPrice, filters.maxPrice);
+
+    return (await this.productRepository.find(dbRequest)).map(this.mapToDTO.bind(this));
   }
 
   public async getOne(productId: ProductDTO['id']): Promise<ProductDTO> {

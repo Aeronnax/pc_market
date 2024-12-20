@@ -1,3 +1,4 @@
+import { PaginationDTO, SortDTO } from 'src/helpers/db/types';
 import { CategoriesDTO } from '../Categories/Categories.DTO';
 
 /**
@@ -32,6 +33,25 @@ export interface ProductDTO {
   category: CategoriesDTO;
 }
 
-export interface ProductListRequestDTO {
-  categoryId?: CategoriesDTO['id'];
+/**
+ * Запрос для получения списка продуктов
+ * @tsoaModel
+ */
+export interface ProductListRequestDTO extends PaginationDTO {
+  /**
+   * ID категории для фильтрации
+   */
+  categoryId?: number;
+
+  /**
+   * Минимальная цена
+   */
+  minPrice?: number;
+
+  /**
+   * Максимальная цена
+   */
+  maxPrice?: number;
+
+  sort?: SortDTO<ProductDTO>;
 }
