@@ -41,7 +41,8 @@ export class ProductsService {
 
     filtersRequest.price = getMinMaxFilter(filters.minPrice, filters.maxPrice);
 
-    return (await this.productRepository.find(dbRequest)).map(this.mapToDTO.bind(this));
+    const products = await this.productRepository.find(dbRequest);
+    return products.map(this.mapToDTO.bind(this));
   }
 
   public async getOne(productId: ProductDTO['id']): Promise<ProductDTO> {

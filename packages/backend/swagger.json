@@ -200,18 +200,20 @@
 				"description": "Запрос для получения списка продуктов",
 				"properties": {
 					"take": {
-						"type": "number",
-						"format": "double",
-						"description": "Кол-во необходимых элементов"
+						"type": "integer",
+						"format": "int32",
+						"description": "Кол-во необходимых элементов",
+						"example": 10
 					},
 					"skip": {
-						"type": "number",
-						"format": "double",
-						"description": "Кол-во элементов, которые нужно пропустить (например они были запрошены ранее)"
+						"type": "integer",
+						"format": "int32",
+						"description": "Кол-во элементов, которые нужно пропустить (например они были запрошены ранее)",
+						"example": 0
 					},
 					"categoryId": {
-						"type": "number",
-						"format": "double",
+						"type": "integer",
+						"format": "int32",
 						"description": "ID категории для фильтрации"
 					},
 					"minPrice": {

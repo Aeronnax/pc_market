@@ -40,18 +40,19 @@ export interface ProductDTO {
 export interface ProductListRequestDTO extends PaginationDTO {
   /**
    * ID категории для фильтрации
+   * @isInt
    */
   categoryId?: number;
 
   /**
    * Минимальная цена
    */
-  minPrice?: number;
+  minPrice?: ProductDTO['price'];
 
   /**
    * Максимальная цена
    */
-  maxPrice?: number;
+  maxPrice?: ProductDTO['price'];
 
   sort?: SortDTO<ProductDTO, keyof ProductDTO>;
 }
