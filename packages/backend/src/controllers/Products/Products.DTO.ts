@@ -1,4 +1,5 @@
-import { CategoriesDTO } from '../Categories/Categories.DTO';
+import { type PaginationDTO, type SortDTO } from 'src/helpers/db/types';
+import { type CategoriesDTO } from '../Categories/Categories.DTO';
 
 /**
  * Стандартный DTO для продукта
@@ -32,6 +33,26 @@ export interface ProductDTO {
   category: CategoriesDTO;
 }
 
-export interface ProductListRequestDTO {
-  categoryId?: CategoriesDTO['id'];
+/**
+ * Запрос для получения списка продуктов
+ * @tsoaModel
+ */
+export interface ProductListRequestDTO extends PaginationDTO {
+  /**
+   * ID категории для фильтрации
+   * @isInt
+   */
+  categoryId?: number;
+
+  /**
+   * Минимальная цена
+   */
+  minPrice?: ProductDTO['price'];
+
+  /**
+   * Максимальная цена
+   */
+  maxPrice?: ProductDTO['price'];
+
+  sort?: SortDTO<ProductDTO, keyof ProductDTO>;
 }

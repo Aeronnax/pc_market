@@ -20,6 +20,11 @@ export default tsEslint.config(
   eslint.configs.recommended,
   ...tsEslint.configs.recommendedTypeChecked,
   {
+    rules: {
+      '@typescript-eslint/consistent-type-imports': ['error', { fixStyle: 'inline-type-imports' }],
+    },
+  },
+  {
     languageOptions: {
       parserOptions: {
         project: true,

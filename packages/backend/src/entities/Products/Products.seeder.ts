@@ -1,7 +1,7 @@
-import { Seeder, SeederFactoryManager } from 'typeorm-extension';
+import { type Seeder, type SeederFactoryManager } from 'typeorm-extension';
 import { ProductsEntity } from './Products.entity';
 import { CategoriesEntity } from 'src/entities/Categories/Categories.entity';
-import { DataSource, Repository } from 'typeorm';
+import { type DataSource, type Repository } from 'typeorm';
 import { isExist } from 'src/helpers/isExist';
 
 const generateCategories =

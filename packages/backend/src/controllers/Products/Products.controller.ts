@@ -1,19 +1,18 @@
-import { Controller, Get, Path, Route, Response, Tags } from 'tsoa';
-import type { ProductDTO } from './Products.DTO';
+import { Body, Controller, Get, Path, Post, Route, Response, Tags } from 'tsoa';
+import type { ProductDTO, ProductListRequestDTO } from './Products.DTO';
 import { ProductsService } from './Products.servicer';
 import type { NotFoundErrorJSON } from 'src/middlewares/error/types';
-
-// TODO: Добавить фильтрацию (по категории): преобразовать listProducts в POST, добавить ДТО, поправить сервис
 
 @Route('products')
 @Tags('Product')
 export class ProductsController extends Controller {
   /**
-   * Получить список всех товаров
+   * Получить список товаров с фильтрацией и пагинацией
    */
-  @Get()
-  public async listProducts(): Promise<ProductDTO[]> {
-    return new ProductsService().getAll();
+  @Post()
+  public async getFilteredProducts(@Body() filters: ProductListRequestDTO): Promise<ProductDTO[]> {
+    const service = new ProductsService();
+    return service.getMany(filters);
   }
 
   /**

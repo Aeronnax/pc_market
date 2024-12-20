@@ -1,6 +1,6 @@
-import { CategoriesDTO } from './Categories.DTO';
-import { CategoriesEntity } from 'src/entities/Categories/Categories.entity';
-import { Repository } from 'typeorm';
+import { type CategoriesDTO } from './Categories.DTO';
+import { type CategoriesEntity } from 'src/entities/Categories/Categories.entity';
+import { type Repository } from 'typeorm';
 import { NotFoundError } from 'src/helpers/errors';
 
 export class CategoriesService {
