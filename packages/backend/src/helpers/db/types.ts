@@ -1,8 +1,8 @@
-export interface SortDTO<T extends object> {
+export interface SortDTO<T extends object, TSortedFields extends keyof T> {
   /**
    * Поле для сортировки
    */
-  by: keyof T;
+  by: TSortedFields;
 
   /**
    * Порядок сортировки

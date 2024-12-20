@@ -53,5 +53,5 @@ export interface ProductListRequestDTO extends PaginationDTO {
    */
   maxPrice?: number;
 
-  sort?: SortDTO<ProductDTO>;
+  sort?: SortDTO<ProductDTO, keyof ProductDTO>;
 }

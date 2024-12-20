@@ -166,7 +166,7 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"SortDTO_ProductDTO_": {
+			"SortDTO_ProductDTO.keyofProductDTO_": {
 				"properties": {
 					"by": {
 						"type": "string",
@@ -225,7 +225,7 @@
 						"description": "Максимальная цена"
 					},
 					"sort": {
-						"$ref": "#/components/schemas/SortDTO_ProductDTO_"
+						"$ref": "#/components/schemas/SortDTO_ProductDTO.keyofProductDTO_"
 					}
 				},
 				"required": [
