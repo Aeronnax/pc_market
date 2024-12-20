@@ -1,9 +1,9 @@
-import { FindOptionsOrder } from 'typeorm';
-import { SortDTO } from './types';
+import { type FindOptionsOrder } from 'typeorm';
+import { type SortDTO } from './types';
 import { isExist } from '../isExist';
 
-export const getSortRequest = <T extends object>(
-  sort?: SortDTO<T>,
+export const getSortRequest = <T extends object, TApiSort extends SortDTO<T, keyof T>>(
+  sort?: TApiSort,
 ): FindOptionsOrder<T> | undefined => {
   if (!isExist(sort)) {
     return;

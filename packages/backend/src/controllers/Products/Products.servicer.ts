@@ -1,7 +1,7 @@
 import { AppDataSource } from 'src/database/data-source';
 import { ProductsEntity } from 'src/entities/Products/Products.entity';
-import { ProductDTO, ProductListRequestDTO } from 'src/controllers/Products/Products.DTO';
-import { FindManyOptions, FindOptionsWhere } from 'typeorm';
+import { type ProductDTO, type ProductListRequestDTO } from 'src/controllers/Products/Products.DTO';
+import { type FindManyOptions, type FindOptionsWhere } from 'typeorm';
 import { isExist } from 'src/helpers/isExist';
 import { getMinMaxFilter } from 'src/helpers/db/getMinMaxFilter';
 import { getSortRequest } from 'src/helpers/db/getSortRequest';

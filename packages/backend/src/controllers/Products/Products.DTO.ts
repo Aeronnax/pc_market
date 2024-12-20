@@ -1,5 +1,5 @@
-import { PaginationDTO, SortDTO } from 'src/helpers/db/types';
-import { CategoriesDTO } from '../Categories/Categories.DTO';
+import { type PaginationDTO, type SortDTO } from 'src/helpers/db/types';
+import { type CategoriesDTO } from '../Categories/Categories.DTO';
 
 /**
  * Стандартный DTO для продукта

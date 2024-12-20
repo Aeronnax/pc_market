@@ -1,4 +1,4 @@
-import { Between, FindOperator, LessThanOrEqual, MoreThanOrEqual } from 'typeorm';
+import { Between, type FindOperator, LessThanOrEqual, MoreThanOrEqual } from 'typeorm';
 import { isExist } from '../isExist';
 
 export const getMinMaxFilter = (min?: number, max?: number): FindOperator<number> | undefined => {

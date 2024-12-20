@@ -1,5 +1,5 @@
-import { FindManyOptions } from 'typeorm';
-import { PaginationDTO } from './types';
+import { type FindManyOptions } from 'typeorm';
+import { type PaginationDTO } from './types';
 
 export const addPaginationToRequest = <T extends object>(
   request: FindManyOptions<T>,

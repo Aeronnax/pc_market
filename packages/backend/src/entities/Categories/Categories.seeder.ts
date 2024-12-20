@@ -1,5 +1,5 @@
-import { Seeder } from 'typeorm-extension';
-import { DataSource } from 'typeorm';
+import { type Seeder } from 'typeorm-extension';
+import { type DataSource } from 'typeorm';
 import { CategoriesEntity } from './Categories.entity';
 
 export class CategoriesSeeder implements Seeder {
