@@ -1,7 +1,11 @@
 export interface ListResponseDTO<T> {
-  data: T[];
+  items: T[];
 }
 
 export interface ListPaginatedResponseDTO<T> extends ListResponseDTO<T> {
+  /**
+   * @isInt
+   * @example 1
+   */
   totalCount: number;
 }

@@ -1,7 +1,12 @@
 import 'dotenv/config';
 import 'reflect-metadata';
 
-import express, { json, type Response as ExResponse, type Request as ExRequest, urlencoded } from 'express';
+import express, {
+  json,
+  type Response as ExResponse,
+  type Request as ExRequest,
+  urlencoded,
+} from 'express';
 import { AppDataSource } from './database/data-source';
 
 import { isExist } from './helpers/isExist';

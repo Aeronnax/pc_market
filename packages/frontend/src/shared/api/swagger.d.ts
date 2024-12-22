@@ -22,11 +22,15 @@ declare namespace Components {
             };
         }
         export interface ListPaginatedResponseDTOProductDTO {
-            data: /* Стандартный DTO для продукта */ ProductDTO[];
-            totalCount: number; // double
+            items: /* Стандартный DTO для продукта */ ProductDTO[];
+            /**
+             * example:
+             * 1
+             */
+            totalCount: number; // int32
         }
         export interface ListResponseDTOCategoriesDTO {
-            data: /* Стандартная DTO для категории */ CategoriesDTO[];
+            items: /* Стандартная DTO для категории */ CategoriesDTO[];
         }
         export interface NotFoundErrorJSON {
             message: string;

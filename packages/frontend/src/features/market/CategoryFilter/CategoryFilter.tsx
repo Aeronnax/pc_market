@@ -19,7 +19,7 @@ const CategoryFilter: FC = () => {
   >([]);
   useEffect(() => {
     getCategories().then((res) => {
-      setCategories([{ id: -1, name: 'Все' }, ...res.data.data]);
+      setCategories([{ id: -1, name: 'Все' }, ...res.data.items]);
     });
   }, []);
 

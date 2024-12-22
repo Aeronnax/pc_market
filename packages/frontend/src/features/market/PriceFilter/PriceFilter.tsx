@@ -18,8 +18,8 @@ const PriceFilter: FC = () => {
         return;
       }
 
-      const numValue = Number(e.currentTarget.value);
-      if (Number.isNaN(value)) {
+      const numValue = Number(value);
+      if (Number.isNaN(numValue)) {
         return;
       }
       setPriceFilter(

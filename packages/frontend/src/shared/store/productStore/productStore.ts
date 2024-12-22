@@ -57,7 +57,7 @@ export const useProductStore = create<ProductStore>()(
       getProducts({ ...transformFilters(filtersLocal), ...pagination }).then(
         (res) => {
           const data = res.data;
-          set({ products: data.data, isLoading: false });
+          set({ products: data.items, isLoading: false });
         }
       );
     },

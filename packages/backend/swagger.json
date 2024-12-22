@@ -168,19 +168,20 @@
 			},
 			"ListPaginatedResponseDTO_ProductDTO_": {
 				"properties": {
-					"data": {
+					"items": {
 						"items": {
 							"$ref": "#/components/schemas/ProductDTO"
 						},
 						"type": "array"
 					},
 					"totalCount": {
-						"type": "number",
-						"format": "double"
+						"type": "integer",
+						"format": "int32",
+						"example": 1
 					}
 				},
 				"required": [
-					"data",
+					"items",
 					"totalCount"
 				],
 				"type": "object",
@@ -259,7 +260,7 @@
 			},
 			"ListResponseDTO_CategoriesDTO_": {
 				"properties": {
-					"data": {
+					"items": {
 						"items": {
 							"$ref": "#/components/schemas/CategoriesDTO"
 						},
@@ -267,7 +268,7 @@
 					}
 				},
 				"required": [
-					"data"
+					"items"
 				],
 				"type": "object",
 				"additionalProperties": false

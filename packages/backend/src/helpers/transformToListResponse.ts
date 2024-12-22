@@ -2,13 +2,13 @@ import { type ListPaginatedResponseDTO, type ListResponseDTO } from 'src/types/l
 
 export const toListResponse = <T>(data: T[]): ListResponseDTO<T> => {
   return {
-    data: data,
+    items: data,
   };
 };
 
 export function toListPaginatedResponse<T>(data: T[], count: number): ListPaginatedResponseDTO<T> {
   return {
-    data: data,
+    items: data,
     totalCount: count,
   };
 }
@@ -18,7 +18,7 @@ export function toListPaginatedResponseWithMap<T, TResult>(
   transformItem: (dataArg: T) => TResult,
 ): ListPaginatedResponseDTO<TResult> {
   return {
-    data: data.map(transformItem),
+    items: data.map(transformItem),
     totalCount: count,
   };
 }
