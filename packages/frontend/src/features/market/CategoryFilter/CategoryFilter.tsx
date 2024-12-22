@@ -1,27 +1,35 @@
-import React, { FC, ChangeEventHandler } from 'react';
+import React, { FC, ChangeEventHandler, useState, useEffect } from 'react';
+import { getCategories } from 'src/shared/api/products/products';
 import { useProductStore } from 'src/shared/store/productStore/productStore';
-import { categories } from './types';
-import { checkStrIsCategory } from './helpers';
 
 const CategoryFilter: FC = () => {
   const setCategoryFilter = useProductStore((state) => state.setCategoryFilter);
-  const { category } = useProductStore((state) => state.filters);
+  const { categoryId: category } = useProductStore((state) => state.filters);
 
   const handleChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
-    const value = event.currentTarget.value;
-    if (!checkStrIsCategory(value)) {
+    const value = +event.currentTarget.value;
+    if (Number.isNaN(value)) {
       return;
     }
-    setCategoryFilter(value === 'Все' ? undefined : value);
+    setCategoryFilter(value === -1 ? undefined : value);
   };
+
+  const [categories, setCategories] = useState<
+    Components.Schemas.CategoriesDTO[]
+  >([]);
+  useEffect(() => {
+    getCategories().then((res) => {
+      setCategories([{ id: -1, name: 'Все' }, ...res.data]);
+    });
+  }, []);
 
   return (
     <div>
       <h4>Категории</h4>
       <select onChange={handleChange} value={category ?? 'Все'}>
         {categories.map((category) => (
-          <option key={category} value={category}>
-            {category}
+          <option key={category.id} value={category.id}>
+            {category.name}
           </option>
         ))}
       </select>

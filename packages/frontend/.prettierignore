@@ -6,3 +6,5 @@
 node_modules/
 .yarn/
 /tsconfig.tsbuildinfo
+
+/src/shared/api/swagger.d.ts

@@ -1,5 +1,3 @@
-import { Product } from 'src/shared/api/products/types';
-
-export interface ProductWithQuantity extends Product {
+export interface ProductWithQuantity extends Components.Schemas.ProductDTO {
   quantity: number;
 }

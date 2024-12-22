@@ -9,11 +9,22 @@ const PriceFilter: FC = () => {
 
   const handlePriceChange =
     (type: 'min' | 'max') => (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = Number(e.currentTarget.value);
+      const value = e.currentTarget.value;
+
+      if (value.trim() === '') {
+        setPriceFilter(
+          type === 'min' ? [undefined, maxPrice] : [minPrice, undefined]
+        );
+        return;
+      }
+
+      const numValue = Number(e.currentTarget.value);
       if (Number.isNaN(value)) {
         return;
       }
-      setPriceFilter(type === 'min' ? [value, maxPrice] : [minPrice, value]);
+      setPriceFilter(
+        type === 'min' ? [numValue, maxPrice] : [minPrice, numValue]
+      );
     };
 
   return (

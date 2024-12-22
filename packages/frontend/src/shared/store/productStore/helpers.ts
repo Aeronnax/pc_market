@@ -1,10 +1,11 @@
-import { GetProductsRequest } from 'src/shared/api/products/types';
 import { Filters } from './types';
 
-export const transformFilters = (store: Filters): GetProductsRequest => {
+export const transformFilters = (
+  store: Filters
+): Omit<Components.Schemas.ProductListRequestDTO, 'skip' | 'take'> => {
   return {
-    category: store.category ?? undefined,
-    priceFrom: store.priceRange?.[0],
-    priceTo: store.priceRange?.[1],
+    categoryId: store.categoryId ?? undefined,
+    minPrice: store.priceRange?.[0],
+    maxPrice: store.priceRange?.[1],
   };
 };

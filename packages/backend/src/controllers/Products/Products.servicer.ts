@@ -26,7 +26,9 @@ export class ProductsService {
       },
     };
 
-    dbRequest.order = getSortRequest(filters.sort);
+    dbRequest.order = getSortRequest(filters.sort) ?? {
+      id: 'asc',
+    };
 
     addPaginationToRequest(dbRequest, filters);
 

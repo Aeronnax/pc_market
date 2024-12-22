@@ -1,10 +1,9 @@
 import React, { FC } from 'react';
 import { useCartStore } from 'src/shared/store/cart';
-import { Product } from 'src/shared/api/products/types';
 import Styles from './AddToCartButton.module.scss';
 
 interface AddToCartButtonProps {
-  product: Product;
+  product: Components.Schemas.ProductDTO;
 }
 
 const AddToCartButton: FC<AddToCartButtonProps> = ({ product }) => {
