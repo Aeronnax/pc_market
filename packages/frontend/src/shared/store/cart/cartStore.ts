@@ -1,6 +1,5 @@
 import { createStore } from 'zustand';
 import { ProductWithQuantity } from './types';
-import { Product } from 'src/shared/api/products/types';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { calculateTotalPrice } from './helpers';
 
@@ -11,7 +10,7 @@ export interface CartState {
 
 export interface CartActions {
   setCart: (newCart: ProductWithQuantity[]) => void;
-  addToCart: (product: Product, count?: number) => void;
+  addToCart: (product: Components.Schemas.ProductDTO, count?: number) => void;
   removeFromCart: (id: number) => void;
   clearCart: () => void;
 }

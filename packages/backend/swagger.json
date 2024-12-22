@@ -166,6 +166,27 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"ListPaginatedResponseDTO_ProductDTO_": {
+				"properties": {
+					"items": {
+						"items": {
+							"$ref": "#/components/schemas/ProductDTO"
+						},
+						"type": "array"
+					},
+					"totalCount": {
+						"type": "integer",
+						"format": "int32",
+						"example": 1
+					}
+				},
+				"required": [
+					"items",
+					"totalCount"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"SortDTO_ProductDTO.keyofProductDTO_": {
 				"properties": {
 					"by": {
@@ -233,6 +254,21 @@
 				"required": [
 					"take",
 					"skip"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ListResponseDTO_CategoriesDTO_": {
+				"properties": {
+					"items": {
+						"items": {
+							"$ref": "#/components/schemas/CategoriesDTO"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"items"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -475,17 +511,14 @@
 		},
 		"/products": {
 			"post": {
-				"operationId": "GetFilteredProducts",
+				"operationId": "GetProducts",
 				"responses": {
 					"200": {
 						"description": "Ok",
 						"content": {
 							"application/json": {
 								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/ProductDTO"
-									},
-									"type": "array"
+									"$ref": "#/components/schemas/ListPaginatedResponseDTO_ProductDTO_"
 								}
 							}
 						}
@@ -565,10 +598,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/CategoriesDTO"
-									},
-									"type": "array"
+									"$ref": "#/components/schemas/ListResponseDTO_CategoriesDTO_"
 								}
 							}
 						}

@@ -1,9 +1,8 @@
 import React, { FC } from 'react';
 import Styles from './ProductItem.module.scss';
-import { Product } from 'src/shared/api/products/types';
 
 interface ProductItemProps {
-  product: Product;
+  product: Components.Schemas.ProductDTO;
 }
 
 const ProductItem: FC<ProductItemProps> = ({ product }) => {

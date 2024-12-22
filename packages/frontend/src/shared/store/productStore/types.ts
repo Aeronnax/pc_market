@@ -1,6 +1,4 @@
-import { ProductCategory } from 'src/shared/api/products/types';
-
 export interface Filters {
-  category?: ProductCategory;
+  categoryId?: Components.Schemas.CategoriesDTO['id'];
   priceRange?: [number | undefined, number | undefined];
 }

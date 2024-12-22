@@ -1,9 +1,14 @@
-import { GetProductsRequest, GetProductsResponse } from './types';
 import { instance } from '../instance';
+import { AxiosResponse } from 'axios';
+
+export const getCategories = (): Promise<
+  AxiosResponse<Paths.GetCategories.Responses.$200>
+> => {
+  return instance.get('/categories');
+};
 
 export const getProducts = (
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  request?: GetProductsRequest
-): Promise<GetProductsResponse> => {
-  return instance.get('/products');
+  request?: Paths.GetProducts.RequestBody
+): Promise<AxiosResponse<Paths.GetProducts.Responses.$200>> => {
+  return instance.post('/products', request);
 };
