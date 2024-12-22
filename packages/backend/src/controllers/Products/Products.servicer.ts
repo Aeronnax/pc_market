@@ -7,19 +7,16 @@ import { getMinMaxFilter } from 'src/helpers/db/getMinMaxFilter';
 import { getSortRequest } from 'src/helpers/db/getSortRequest';
 import { addPaginationToRequest } from 'src/helpers/db/addPaginationToRequest';
 import { NotFoundError } from 'src/helpers/errors';
+import { type PaginatedResult } from 'src/types/db';
 
 export class ProductsService {
   private productRepository = AppDataSource.getRepository(ProductsEntity);
-
-  private mapToDTO({ id, name, description, price, category }: ProductsEntity): ProductDTO {
-    return { id, name, description, price, category };
-  }
 
   /**
    * Получить список товаров с фильтрацией.
    * @param filters Параметры фильтрации
    */
-  public async getMany(filters: ProductListRequestDTO): Promise<ProductDTO[]> {
+  public async getMany(filters: ProductListRequestDTO): Promise<PaginatedResult<ProductsEntity>> {
     const dbRequest: FindManyOptions<ProductsEntity> = {
       relations: {
         category: true,
@@ -43,11 +40,10 @@ export class ProductsService {
 
     filtersRequest.price = getMinMaxFilter(filters.minPrice, filters.maxPrice);
 
-    const products = await this.productRepository.find(dbRequest);
-    return products.map(this.mapToDTO.bind(this));
+    return this.productRepository.findAndCount(dbRequest);
   }
 
-  public async getOne(productId: ProductDTO['id']): Promise<ProductDTO> {
+  public async getOne(productId: ProductDTO['id']): Promise<ProductsEntity> {
     const product = await this.productRepository.findOne({
       where: { id: productId },
       relations: ['category'],
@@ -56,6 +52,6 @@ export class ProductsService {
     if (!product) {
       throw new NotFoundError('Продукт');
     }
-    return this.mapToDTO(product);
+    return product;
   }
 }

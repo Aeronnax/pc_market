@@ -21,6 +21,13 @@ declare namespace Components {
                 message: string;
             };
         }
+        export interface ListPaginatedResponseDTOProductDTO {
+            data: /* Стандартный DTO для продукта */ ProductDTO[];
+            totalCount: number; // double
+        }
+        export interface ListResponseDTOCategoriesDTO {
+            data: /* Стандартная DTO для категории */ CategoriesDTO[];
+        }
         export interface NotFoundErrorJSON {
             message: string;
         }
@@ -167,7 +174,7 @@ declare namespace Paths {
     }
     namespace GetCategories {
         namespace Responses {
-            export type $200 = /* Стандартная DTO для категории */ Components.Schemas.CategoriesDTO[];
+            export type $200 = Components.Schemas.ListResponseDTOCategoriesDTO;
         }
     }
     namespace GetCategory {
@@ -181,12 +188,6 @@ declare namespace Paths {
             export type $200 = /* Стандартная DTO для категории */ Components.Schemas.CategoriesDTO;
         }
     }
-    namespace GetFilteredProducts {
-        export type RequestBody = /* Запрос для получения списка продуктов */ Components.Schemas.ProductListRequestDTO;
-        namespace Responses {
-            export type $200 = /* Стандартный DTO для продукта */ Components.Schemas.ProductDTO[];
-        }
-    }
     namespace GetProduct {
         namespace Parameters {
             export type ProductId = number; // double
@@ -197,6 +198,12 @@ declare namespace Paths {
         namespace Responses {
             export type $200 = /* Стандартный DTO для продукта */ Components.Schemas.ProductDTO;
             export type $404 = Components.Schemas.NotFoundErrorJSON;
+        }
+    }
+    namespace GetProducts {
+        export type RequestBody = /* Запрос для получения списка продуктов */ Components.Schemas.ProductListRequestDTO;
+        namespace Responses {
+            export type $200 = Components.Schemas.ListPaginatedResponseDTOProductDTO;
         }
     }
     namespace GetUser {
