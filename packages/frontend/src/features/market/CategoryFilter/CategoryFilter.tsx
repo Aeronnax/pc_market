@@ -1,4 +1,5 @@
-import React, { FC, ChangeEventHandler, useState, useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React, { FC, ChangeEventHandler } from 'react';
 import { getCategories } from 'src/shared/api/products/products';
 import { useProductStore } from 'src/shared/store/productStore/productStore';
 
@@ -14,14 +15,14 @@ const CategoryFilter: FC = () => {
     setCategoryFilter(value === -1 ? undefined : value);
   };
 
-  const [categories, setCategories] = useState<
-    Components.Schemas.CategoriesDTO[]
-  >([]);
-  useEffect(() => {
-    getCategories().then((res) => {
-      setCategories([{ id: -1, name: 'Все' }, ...res.data.items]);
-    });
-  }, []);
+  const { data } = useQuery({
+    queryKey: ['CategoryFilter'],
+    queryFn: getCategories,
+  });
+  const categories: Components.Schemas.CategoriesDTO[] = [
+    { id: -1, name: 'Все' },
+    ...(data?.data.items ?? []),
+  ];
 
   return (
     <div>
