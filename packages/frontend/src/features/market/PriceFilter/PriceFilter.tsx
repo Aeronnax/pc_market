@@ -1,18 +1,20 @@
 import React, { FC } from 'react';
-import { useProductStore } from 'src/shared/store/productStore/productStore';
 
-const PriceFilter: FC = () => {
-  const setPriceFilter = useProductStore((state) => state.setPriceFilter);
-  const { priceRange } = useProductStore((state) => state.filters);
-  const minPrice = priceRange?.[0];
-  const maxPrice = priceRange?.[1];
+interface PriceFilterProps {
+  value: [number | undefined, number | undefined] | undefined;
+  onChange: (priceRange?: [number | undefined, number | undefined]) => void;
+}
+
+const PriceFilter: FC<PriceFilterProps> = ({ value, onChange }) => {
+  const minPrice = value?.[0];
+  const maxPrice = value?.[1];
 
   const handlePriceChange =
     (type: 'min' | 'max') => (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.currentTarget.value;
 
       if (value.trim() === '') {
-        setPriceFilter(
+        onChange(
           type === 'min' ? [undefined, maxPrice] : [minPrice, undefined]
         );
         return;
@@ -22,9 +24,7 @@ const PriceFilter: FC = () => {
       if (Number.isNaN(numValue)) {
         return;
       }
-      setPriceFilter(
-        type === 'min' ? [numValue, maxPrice] : [minPrice, numValue]
-      );
+      onChange(type === 'min' ? [numValue, maxPrice] : [minPrice, numValue]);
     };
 
   return (
