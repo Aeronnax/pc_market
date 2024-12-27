@@ -26,6 +26,7 @@ const PriceFilter: FC<PriceFilterProps> = ({ value, onChange }) => {
       }
       onChange(type === 'min' ? [numValue, maxPrice] : [minPrice, numValue]);
     };
+
   return (
     <div>
       <h4>Цена</h4>

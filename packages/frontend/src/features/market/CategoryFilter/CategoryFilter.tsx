@@ -1,6 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
-import React, { FC, ChangeEventHandler } from 'react';
-import { getCategories } from 'src/shared/api/products/products';
+import React, { FC, ChangeEventHandler, useMemo } from 'react';
+import { useGetCategories } from 'src/shared/api/products/hooks/useGetCategories';
 
 interface CategoryFilterProps {
   value: number | undefined;
@@ -15,14 +14,12 @@ const CategoryFilter: FC<CategoryFilterProps> = ({ value, onChange }) => {
     onChange(value === -1 ? undefined : value);
   };
 
-  const { data } = useQuery({
-    queryKey: ['CategoryFilter'],
-    queryFn: getCategories,
-  });
-  const categories: Components.Schemas.CategoriesDTO[] = [
-    { id: -1, name: 'Все' },
-    ...(data?.data.items ?? []),
-  ];
+  const { data } = useGetCategories();
+
+  const categories = useMemo<Components.Schemas.CategoriesDTO[]>(
+    () => [{ id: -1, name: 'Все' }, ...(data?.data.items ?? [])],
+    [data]
+  );
 
   return (
     <div>
