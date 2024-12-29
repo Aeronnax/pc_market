@@ -13,7 +13,10 @@ const Market: FC = () => {
   const [filters, setFilters] = useState<MarketFilters>({});
   const apiFilters = useDebounce(filters, 1000, transformFiltersToApi);
 
-  const { data, isPending } = useGetProducts(apiFilters);
+  const { data, isPending, fetchNextPage, hasNextPage } = useGetProducts({
+    ...apiFilters,
+    take: 6,
+  });
 
   const queryClient = useQueryClient();
   const handleRefetchTable = () => {
@@ -26,7 +29,10 @@ const Market: FC = () => {
     <MainTemplate>
       <FiltersPanel filters={filters} setFilters={setFilters} />
       <button onClick={handleRefetchTable}>refetch table</button>
-      <ProductItemsModule items={data?.data.items} isLoading={isPending} />
+      <ProductItemsModule items={data?.items} isLoading={isPending} />
+      {hasNextPage && (
+        <button onClick={() => fetchNextPage()}>Показать еще</button>
+      )}
     </MainTemplate>
   );
 };

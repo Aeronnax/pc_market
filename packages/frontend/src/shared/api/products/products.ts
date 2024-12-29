@@ -1,3 +1,4 @@
+import { getResponseData } from 'src/shared/helpers/getResponseData';
 import { instance } from '../instance';
 import { AxiosResponse } from 'axios';
 
@@ -9,6 +10,6 @@ export const getCategories = (): Promise<
 
 export const getProducts = (
   request?: Paths.GetProducts.RequestBody
-): Promise<AxiosResponse<Paths.GetProducts.Responses.$200>> => {
-  return instance.post('/products', request);
+): Promise<Paths.GetProducts.Responses.$200> => {
+  return getResponseData(instance.post('/products', request));
 };

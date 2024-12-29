@@ -45,6 +45,6 @@ export class ProductsSeeder implements Seeder {
 
     await repository.save([product1, product2]);
 
-    await productFactory.saveMany(10);
+    await productFactory.saveMany(30);
   }
 }
