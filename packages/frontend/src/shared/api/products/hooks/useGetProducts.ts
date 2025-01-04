@@ -6,16 +6,25 @@ import {
   useInfiniteRequest,
 } from 'src/shared/helpers/useInfinityRequest';
 
-// export const useGetProducts2 = (
-//   request: Omit<Paths.GetProducts.RequestBody, 'take' | 'skip'>
+// import { useInfiniteQuery } from '@tanstack/react-query';
+// import { isExist } from 'src/shared/helpers/isExist';
+
+// export const useGetProducts = (
+//   request: Omit<Paths.GetProducts.RequestBody, 'skip'>
 // ) => {
-//   return useInfiniteQuery({
+//   const { data, ...result } = useInfiniteQuery({
 //     queryKey: [QueryKeys.PRODUCTS_LIST, request],
-//     queryFn: ({ pageParam = 0 }) =>
-//       getProducts({ ...request, take: 6, skip: pageParam }),
+//     queryFn: async ({ pageParam = 0 }) => {
+//       const response = await getProducts({ ...request, skip: pageParam });
+//       return {
+//         ...response,
+//         take: request.take,
+//         skip: pageParam,
+//       };
+//     },
 //     getNextPageParam: (lastPage) => {
-//       const { items, totalCount } = lastPage.data;
-//       const currentPageCount = JSON.parse(lastPage.config.data).skip ?? 0;
+//       const { items, totalCount } = lastPage;
+//       const currentPageCount = lastPage.skip;
 //       const result =
 //         currentPageCount + items.length < totalCount
 //           ? currentPageCount + items.length
@@ -26,6 +35,17 @@ import {
 
 //     initialPageParam: 0,
 //   });
+
+//   let fullData: Paths.GetProducts.Responses.$200 | undefined;
+//   if (isExist(data)) {
+//     const allPages = data.pages.flatMap((item) => item.items);
+//     const lastItem = data.pages[data.pages.length - 1];
+//     fullData = {
+//       ...lastItem,
+//       items: allPages,
+//     };
+//   }
+//   return { ...result, data: fullData };
 // };
 
 export const useGetProducts = (
