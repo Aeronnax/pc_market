@@ -21,10 +21,12 @@ const FiltersPanel: FC<FiltersPanelProps> = ({ filters, setFilters }) => {
   return (
     <div>
       <h3>Фильтры</h3>
+
       <CategoryFilter
         value={filters.categoryId}
         onChange={handleChangeFilters('categoryId')}
       />
+
       <PriceFilter
         value={filters.priceRange}
         onChange={handleChangeFilters('priceRange')}

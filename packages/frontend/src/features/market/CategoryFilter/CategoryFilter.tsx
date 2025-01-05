@@ -1,36 +1,47 @@
-import React, { FC, ChangeEventHandler, useMemo } from 'react';
+import React, { FC, useMemo } from 'react';
+import { Select } from '@mantine/core';
 import { useGetCategories } from 'src/shared/api/products/hooks/useGetCategories';
 
 interface CategoryFilterProps {
   value: number | undefined;
   onChange: (newValue: number | undefined) => void;
 }
+
 const CategoryFilter: FC<CategoryFilterProps> = ({ value, onChange }) => {
-  const handleChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
-    const value = +event.currentTarget.value;
-    if (Number.isNaN(value)) {
-      return;
-    }
-    onChange(value === -1 ? undefined : value);
-  };
-
   const { data } = useGetCategories();
-
-  const categories = useMemo<Components.Schemas.CategoriesDTO[]>(
-    () => [{ id: -1, name: 'Все' }, ...(data?.data.items ?? [])],
+  const categories = useMemo(
+    () => [
+      { value: '-1', label: 'Все' },
+      ...(data?.data.items.map((item) => ({
+        value: String(item.id),
+        label: item.name,
+      })) ?? []),
+    ],
     [data]
   );
+
+  const handleChange = (selectedValue: string | null) => {
+    if (selectedValue === null) {
+      onChange(undefined);
+      return;
+    }
+
+    const numericValue = Number(selectedValue);
+    onChange(numericValue === -1 ? undefined : numericValue);
+  };
 
   return (
     <div>
       <h4>Категории</h4>
-      <select onChange={handleChange} value={value ?? 'Все'}>
-        {categories.map((category) => (
-          <option key={category.id} value={category.id}>
-            {category.name}
-          </option>
-        ))}
-      </select>
+      <Select
+        data={categories}
+        value={value !== undefined ? String(value) : '-1'}
+        onChange={handleChange}
+        placeholder="Выберите категорию"
+        rightSection
+        withCheckIcon={false}
+        comboboxProps={{ withinPortal: true, zIndex: 1000 }}
+      />
     </div>
   );
 };
