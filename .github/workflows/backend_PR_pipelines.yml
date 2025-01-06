@@ -13,8 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Create local .env
-        uses: cp .env.example .env
       - name: Enable Corepack before setting up Node
         run: corepack enable
       - uses: actions/setup-node@v4
