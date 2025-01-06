@@ -1,8 +1,8 @@
-import {
+import { useInfiniteQuery } from '@tanstack/react-query';
+import type {
   DefaultError,
   InfiniteData,
   QueryKey,
-  useInfiniteQuery,
 } from '@tanstack/react-query';
 
 import type {

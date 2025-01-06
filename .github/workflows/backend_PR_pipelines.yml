@@ -1,0 +1,32 @@
+name: Backend PullRequest Tests
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on:
+  pull_request:
+    paths:
+      - 'packages/backend/**'
+defaults:
+  run:
+    working-directory: ./packages/backend
+jobs:
+  checks:
+    name: Linters
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enable Corepack before setting up Node
+        run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+          cache-dependency-path: packages/backend/yarn.lock
+      - name: Install dependencies
+        run: yarn install --immutable
+      - name: Generate routes and swagger
+        run: yarn run build:routes
+      - name: Check types
+        run: yarn run types
+      - name: Linter
+        run: yarn run lint:check
+      - name: Formatter
+        run: yarn run prettier:check
