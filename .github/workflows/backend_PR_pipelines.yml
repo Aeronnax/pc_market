@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
   pull_request:
     paths:
-      - 'packages/backend/**'
+      - "packages/backend/**"
 defaults:
   run:
     working-directory: ./packages/backend
@@ -17,8 +17,8 @@ jobs:
         run: corepack enable
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'yarn'
+          node-version: "20"
+          cache: "yarn"
           cache-dependency-path: packages/backend/yarn.lock
       - name: Install dependencies
         run: yarn install --immutable

@@ -7,9 +7,9 @@ import type {
 export const generateQueryFn =
   <T>(
     queryFn: NumberQueryFunction<PaginationResponse<T[]>>,
-    take: number,
+    take: number
   ): NumberQueryFunction<PaginationResponseWithSkipTake<T[]>> =>
-  async context => {
+  async (context) => {
     const skip = context.pageParam ?? 0;
     const result = await queryFn(context);
     return {
