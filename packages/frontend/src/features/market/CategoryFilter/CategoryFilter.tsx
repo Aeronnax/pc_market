@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from 'react';
-import { Select } from '@mantine/core';
+import { ComboboxItem, Select } from '@mantine/core';
 import { useGetCategories } from 'src/shared/api/products/hooks/useGetCategories';
 
 interface CategoryFilterProps {
@@ -9,7 +9,7 @@ interface CategoryFilterProps {
 
 const CategoryFilter: FC<CategoryFilterProps> = ({ value, onChange }) => {
   const { data } = useGetCategories();
-  const categories = useMemo(
+  const categories = useMemo<ComboboxItem[]>(
     () => [
       { value: '-1', label: 'Все' },
       ...(data?.data.items.map((item) => ({

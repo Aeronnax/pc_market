@@ -14,7 +14,7 @@ const PriceFilter: FC<PriceFilterProps> = ({ value, onChange }) => {
     (type: 'min' | 'max') => (value: string | number | undefined) => {
       if (value === undefined || value === '') {
         onChange(
-          type === 'min' ? [undefined, maxPrice] : [undefined, minPrice]
+          type === 'min' ? [undefined, maxPrice] : [minPrice, undefined]
         );
         return;
       }

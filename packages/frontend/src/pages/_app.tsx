@@ -1,6 +1,7 @@
 import type { AppType } from 'next/app';
 import 'src/shared/styles/reset.scss';
 import 'src/shared/styles/base.scss';
+import '@mantine/core/styles.css';
 import { CartStoreProvider } from 'src/shared/store/cart';
 import QueryProvider from 'src/appFsd/QueryProvider';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
