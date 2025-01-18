@@ -28,10 +28,9 @@ const CategoryFilter: FC<CategoryFilterProps> = ({ value, onChange }) => {
 
     const numericValue = Number(selectedValue);
 
-    if (Number.isNaN(selectedValue)) {
-      console.error('Некорректное значение:', selectedValue);
+    if (Number.isNaN(numericValue)) {
+      throw new Error(`Некорректное значение "${selectedValue}."`);
     }
-
     onChange(numericValue === -1 ? undefined : numericValue);
   };
 
