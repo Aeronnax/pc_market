@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { NumberInput } from '@mantine/core';
 
 interface PriceFilterProps {
   value: [number | undefined, number | undefined] | undefined;
@@ -10,16 +11,13 @@ const PriceFilter: FC<PriceFilterProps> = ({ value, onChange }) => {
   const maxPrice = value?.[1];
 
   const handlePriceChange =
-    (type: 'min' | 'max') => (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = e.currentTarget.value;
-
-      if (value.trim() === '') {
+    (type: 'min' | 'max') => (value: string | number | undefined) => {
+      if (value === undefined || value === '') {
         onChange(
           type === 'min' ? [undefined, maxPrice] : [minPrice, undefined]
         );
         return;
       }
-
       const numValue = Number(value);
       if (Number.isNaN(numValue)) {
         return;
@@ -30,17 +28,20 @@ const PriceFilter: FC<PriceFilterProps> = ({ value, onChange }) => {
   return (
     <div>
       <h4>Цена</h4>
-      <input
-        type="number"
+
+      <NumberInput
         value={minPrice ?? ''}
         onChange={handlePriceChange('min')}
         placeholder="Минимальная цена"
+        hideControls
+        allowNegative={false}
       />
-      <input
-        type="number"
+      <NumberInput
         value={maxPrice ?? ''}
         onChange={handlePriceChange('max')}
         placeholder="Максимальная цена"
+        hideControls
+        allowNegative={false}
       />
     </div>
   );

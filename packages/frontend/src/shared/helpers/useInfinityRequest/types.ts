@@ -1,4 +1,3 @@
-import type { QueryFunctionContext } from '@tanstack/query-core/src/types';
 import type {
   InfiniteQueryObserverResult,
   QueryFunction,
@@ -7,6 +6,7 @@ import type {
   UndefinedInitialDataInfiniteOptions,
   DefaultError,
   InfiniteData,
+  QueryFunctionContext,
 } from '@tanstack/react-query';
 
 interface ApiPagination {

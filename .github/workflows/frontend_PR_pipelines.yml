@@ -1,0 +1,34 @@
+name: Frontend PullRequest Tests
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on:
+  pull_request:
+    paths:
+      - "packages/frontend/**"
+defaults:
+  run:
+    working-directory: ./packages/frontend
+jobs:
+  checks:
+    name: Linters
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create local .env
+        run: cp .env.example .env
+      - name: Enable Corepack before setting up Node
+        run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "yarn"
+          cache-dependency-path: packages/frontend/yarn.lock
+      - name: Install dependencies
+        run: yarn install --immutable
+      - name: Check types
+        run: yarn run types
+      - name: Linter
+        run: yarn run lint:check
+      - name: Formatter
+        run: yarn run prettier:check
+      - name: Test build
+        run: yarn run build
