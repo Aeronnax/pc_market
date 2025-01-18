@@ -27,6 +27,11 @@ const CategoryFilter: FC<CategoryFilterProps> = ({ value, onChange }) => {
     }
 
     const numericValue = Number(selectedValue);
+
+    if (Number.isNaN(selectedValue)) {
+      console.error('Некорректное значение:', selectedValue);
+    }
+
     onChange(numericValue === -1 ? undefined : numericValue);
   };
 
@@ -38,8 +43,6 @@ const CategoryFilter: FC<CategoryFilterProps> = ({ value, onChange }) => {
         value={value !== undefined ? String(value) : '-1'}
         onChange={handleChange}
         placeholder="Выберите категорию"
-        rightSection
-        withCheckIcon={false}
         comboboxProps={{ withinPortal: true, zIndex: 1000 }}
       />
     </div>
