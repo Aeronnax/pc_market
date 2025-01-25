@@ -1,4 +1,4 @@
 export interface MarketFilters {
   categoryId?: Components.Schemas.CategoriesDTO['id'];
-  priceRange?: [number | undefined, number | undefined];
+  priceRange?: [number | undefined | null, number | undefined | null];
 }

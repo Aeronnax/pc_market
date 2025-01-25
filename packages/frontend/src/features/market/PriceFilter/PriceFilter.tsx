@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
 import { NumberInput } from '@mantine/core';
 
+type Value = [number | undefined | null, number | undefined | null];
 interface PriceFilterProps {
-  value: [number | undefined, number | undefined] | undefined;
-  onChange: (priceRange?: [number | undefined, number | undefined]) => void;
+  value: Value | undefined;
+  onChange: (priceRange?: Value) => void;
 }
 
 const PriceFilter: FC<PriceFilterProps> = ({ value, onChange }) => {
